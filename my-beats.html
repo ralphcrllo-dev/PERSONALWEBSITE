@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Beats | Jay Ralph Carillo</title>
+    <link rel="stylesheet" href="style.css"> 
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12pt;
+            line-height: 1.8;
+            background: linear-gradient(to bottom, #dff1ff, #cfe9f7);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        header p { color: #5ca9e0; font-style: italic; }
+
+        nav {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover {
+            background-color: rgba(92, 169, 224, 0.2);
+            color: #5ca9e0;
+            border-bottom-color: #5ca9e0;
+        }
+
+        footer {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+        }
+        
+        footer a { color: #5ca9e0; text-decoration: none; }
+
+        main {
+            display: flex;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .sidebar {
+            flex: 0 0 260px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid #2c5364;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar h2 {
+            font-family: Georgia, serif;
+            font-size: 1.5rem;
+            color: #2c5364;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar a:hover, .sidebar a.active {
+            background: #f0f9ff;
+            color: #5ca9e0;
+            border-left-color: #5ca9e0;
+            transform: translateX(5px);
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c5364;
+            padding-bottom: 15px;
+        }
+
+        .page-header h2 {
+            font-family: Georgia, serif;
+            font-size: 2.2rem;
+            color: #2c5364;
+        }
+
+        .page-header p { color: #666; margin-top: 5px; }
+
+        .genre-card {
+            display: flex;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.6);
+            transition: all 0.4s ease;
+            height: 250px;
+        }
+
+        .genre-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(92, 169, 224, 0.25);
+        }
+
+        .card-image-wrapper {
+            flex: 0 0 40%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .genre-card:hover .card-image-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-content h3 {
+            font-family: Georgia, serif;
+            font-size: 1.8rem;
+            color: #2c5364;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            align-self: flex-start;
+            background: #5ca9e0;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .genre-card:hover .view-btn {
+            background: #2c5364;
+        }
+
+        @media (max-width: 900px) {
+            main { flex-direction: column; }
+            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
+            .genre-card { flex-direction: column; height: auto; }
+            .card-image-wrapper { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="top">
+        <div class="profile-section">
+            <img src="images/rap.jpg" alt="Jay Ralph Carillo" class="profile-image">
+            <div>
+                <h1>Jay Ralph Carillo</h1>
+                <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+            </div>
+        </div>
+    </header>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html"> Home</a></li>
+            <li><a href="biography.html"> Biography</a></li>
+            <li><a href="childhood.html"> Childhood</a></li>
+            <li><a href="teenage-year.html"> Teenage Years</a></li>
+            <li><a href="college-experience.html"> College Experience</a></li>
+            <li><a href="blog1.html"> Blog Part 1</a></li>
+            <li><a href="blog2.html"> Blog Part 2</a></li>
+            <li><a href="blog3.html"> Blog Part 3</a></li>
+            <li><a href="photogallery.html"> Photo Gallery</a></li>
+            <li><a href="my-beats.html" style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> My Beats</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <aside class="sidebar">
+            <h2>Quick Navigation</h2>
+            <ul>
+                <li><a href="my-beats.html" class="active">Overview</a></li>
+                <li><a href="beats-pop.html">Pop Favorites</a></li>
+                <li><a href="beats-hiphop.html">Hip Hop / R&B</a></li>
+                <li><a href="beats-rock.html">Rock Favorites</a></li>
+            </ul>
+        </aside>
+
+        <div class="content">
+            <div class="page-header">
+                <h2>My Beats Overview</h2>
+                <p>Select a genre below to explore my favorite playlists, albums, and tracks.</p>
+            </div>
+
+            <a href="beats-pop.html" class="genre-card">
+                <div class="card-image-wrapper">
+                    <img src="images/pop.jpg" alt="Pop Music Band"> 
+                </div>
+                <div class="card-content">
+                    <h3>Pop Favorites</h3>
+                    <p>High-energy hits, catchy hooks, and chart-topping anthems that keep me energized.</p>
+                    <span class="view-btn">View Collection &rarr;</span>
+                </div>
+            </a>
+
+            <a href="beats-hiphop.html" class="genre-card">
+                <div class="card-image-wrapper">
+                    <img src="images/hiphop.jpg" alt="Hip Hop Artist">
+                </div>
+                <div class="card-content">
+                    <h3>Hip Hop / R&B</h3>
+                    <p>Lyrical storytelling, deep basslines, and soulful rhythms for focused coding sessions.</p>
+                    <span class="view-btn">View Collection &rarr;</span>
+                </div>
+            </a>
+
+            <a href="beats-rock.html" class="genre-card">
+                <div class="card-image-wrapper">
+                    <img src="images/rock.webp" alt="Rock Band">
+                </div>
+                <div class="card-content">
+                    <h3>Rock Classics</h3>
+                    <p>Electric guitars, powerful drums, and the legendary bands that shaped my taste.</p>
+                    <span class="view-btn">View Collection &rarr;</span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><strong>Written by: Jay Ralph Carillo</strong></p>
+            <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+            <p>Contact: <a href="mailto:jayralph@example.com">jayralph@example.com</a></p>
+            <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Family photo gallery - Jay Ralph Carillo">
+    <meta name="author" content="Jay Ralph Carillo">
+    <title>FAMILY Gallery | Jay Ralph Carillo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Georgia&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12pt;
+            line-height: 1.8;
+            background: linear-gradient(to bottom, #dff1ff, #cfe9f7);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            background: #5ca9e0;
+            color: white;
+            padding: 10px;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        header {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            padding: 60px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(92, 169, 224, 0.5);
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        header h1 {
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #5ca9e0;
+            font-style: italic;
+        }
+
+        nav {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: rgba(92, 169, 224, 0.2);
+            border-bottom-color: #5ca9e0;
+            color: #5ca9e0;
+        }
+
+        main {
+            flex: 1;
+            padding: 60px 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .section-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-family: Georgia, serif;
+            font-size: 2.2rem;
+            color: #203a43;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #2c5364;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .photo-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #2c5364;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.4s ease;
+        }
+
+        .photo-item:hover img {
+            filter: brightness(1.05);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #5ca9e0;
+        }
+
+        footer {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: #5ca9e0;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section { flex-direction: column; text-align: center; }
+            header h1 { font-size: 2rem; }
+            nav ul { flex-direction: column; }
+            nav a { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+    </style>
+</head>
+
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header id="top">
+  <div class="profile-section">
+    <img src="images/rap.jpg" alt="Jay Ralph Carillo" class="profile-image">
+    <div>
+      <h1>Jay Ralph Carillo</h1>
+      <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+    </div>
+  </div>
+</header>
+
+<nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="photogallery.html">← Back to Gallery</a></li>
+            <li><a href="index.html"> Home</a></li>
+            <li><a href="biography.html"> Biography</a></li>
+            <li><a href="childhood.html"> Childhood</a></li>
+            <li><a href="teenage-year.html"> Teenage Years</a></li>
+            <li><a href="college-experience.html"> College Experience</a></li>
+            <li><a href="blog1.html"> Blog Part 1</a></li>
+            <li><a href="blog2.html"> Blog Part 2</a></li>
+            <li><a href="blog3.html"> Blog Part 3</a></li>
+            <li><a href="photogallery.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Photo Gallery</a></li>
+            <li><a href="my-beats.html"> My Beats</a></li>
+        </ul>
+    </nav>
+
+<main id="main-content">
+  <div class="container">
+    <div class="section-intro">
+      <h2>FAMILY</h2>
+    </div>
+
+    <div class="photo-grid">
+      <div class="photo-item">
+        <img src="images/fam.jpg" alt="Family 1">
+      </div>
+      <div class="photo-item">
+        <img src="images/fam1.jpg" alt="Family 2">
+      </div>
+      <div class="photo-item">
+        <img src="images/fam2.jpg" alt="Family 3">
+      </div>
+      <div class="photo-item">
+        <img src="images/fam3.jpg" alt="Family 4">
+      </div>
+      <div class="photo-item">
+        <img src="images/fam4.jpg" alt="Family 5">
+      </div>
+      <div class="photo-item">
+        <img src="images/fam5.jpg" alt="Family 6">
+      </div>
+      <div class="photo-item">
+        <img src="images/fam6.jpg" alt="Family 7">
+      </div>
+      <div class="photo-item">
+        <img src="images/fam7.jpg" alt="Family 8">
+      </div>
+    </div>
+  </div>
+</main>
+
+<a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
+
+<footer>
+  <div class="container">
+    <p><strong>Written by: Jay Ralph Carillo</strong></p>
+    <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+    <p>Contact: <a href="mailto:jayralph@example.com">jayralph@example.com</a></p>
+    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

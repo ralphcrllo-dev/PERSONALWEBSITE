@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Experience | Jay Ralph Carillo</title>
+  
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+        background-color: #e0f2fe;
+        font-family: Arial, sans-serif;
+    }
+
+    .page-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .sidebar-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        width: 250px;
+        flex-shrink: 0;
+    }
+
+    .sidebar-card h3 {
+        margin-top: 0;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        font-size: 1.2rem;
+        color: #2c3e50;
+    }
+
+    .sidebar-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-card li {
+        margin-bottom: 12px;
+    }
+
+    .sidebar-card a {
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        display: block;
+        transition: color 0.2s;
+    }
+
+    .sidebar-card a:hover {
+        color: #5ca9e0;
+    }
+
+    .content-card {
+        background-color: white;
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        flex-grow: 1;
+    }
+
+    .story-image {
+        float: left;
+        width: 300px;
+        margin-right: 30px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .story-text p {
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+        text-align: justify;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .nav-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+    }
+
+    .btn-next {
+        background-color: #5ca9e0;
+        color: white;
+    }
+    .btn-next:hover {
+        background-color: #4a8dc0;
+    }
+    
+    .btn-back {
+        background-color: #eee;
+        color: #555;
+        margin-right: 10px;
+    }
+    .btn-back:hover {
+        background-color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+        .page-container {
+            flex-direction: column;
+        }
+        .sidebar-card, .content-card {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .story-image {
+            float: none;
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="top">
+    <div class="profile-section">
+      <img src="images/rap.jpg" alt="Jay Ralph Carillo" class="profile-image">
+      <div class="profile-info">
+        <h1>Jay Ralph Carillo</h1>
+        <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+      </div>
+    </div>
+  </header>
+
+   <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html"> Home</a></li>
+            <li><a href="biography.html"> Biography</a></li>
+            <li><a href="childhood.html"> Childhood</a></li>
+            <li><a href="teenage-year.html"> Teenage Years</a></li>
+            <li><a href="college-experience.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> College Experience</a></li>
+            <li><a href="blog1.html"> Blog Part 1</a></li>
+            <li><a href="blog2.html"> Blog Part 2</a></li>
+            <li><a href="blog3.html"> Blog Part 3</a></li>
+            <li><a href="photogallery.html"> Photo Gallery</a></li>
+            <li><a href="my-beats.html"> My Beats</a></li>
+        </ul>
+    </nav>
+
+  <main id="main-content">
+    
+    <aside class="sidebar">
+      <h3>Quick Navigation</h3>
+      <ul>
+        <li><a href="biography.html">Bio Overview</a></li>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+        <li><a href="childhood.html">Childhood Days</a></li>
+        <li><a href="teenage-year.html">Teenage Years</a></li>
+        <li><a href="college-experience.html"style="color: #5ca9e0; font-weight: bold;">College Experience</a></li>
+      </ul>
+    </aside>
+
+    <div class="content-card clearfix">
+        <h2 style="margin-top: 0; color: #2c3e50; font-size: 2.2rem;">College Experience</h2>
+        <hr style="border: 0; border-top: 3px solid #5ca9e0; width: 80px; margin-bottom: 30px; margin-left: 0;">
+        
+        <img src="images/rap.jpg" alt="Jay Ralph Carillo College" class="story-image">
+        
+        <div class="story-text">
+            <p>My college experience has been surreal because I meet different kinds of people every day. I have classmates who come from various backgrounds, and each one has a unique story. Despite the diversity, I have found a group of friends I bond with regularly.</p>
+            
+            <p>I know that in college, nothing is permanent. Even the friends you see every day may eventually leave. Some may become irregular students, while others may fail and stop studying. That reality makes me value my current friendships even more.</p>
+            
+            <p>At the same time, I feel lost in my chosen course. This is not my dream course, and I cannot yet see myself as an IT professional. I sometimes question whether I am on the right path. However, I do not allow these doubts to stop me.</p>
+            
+            <p>I remind myself that my loved ones are supporting my education. Because of their sacrifices, I continue to study with determination. I grab every opportunity to learn new skills related to my course. My college life is a journey of self-discovery and a test of patience and responsibility.</p>
+        </div>
+
+        <div style="text-align: right; margin-top: 40px; clear: both;">
+            <a href="teenage-year.html" class="nav-btn btn-back">← Previous Chapter</a>
+            <a href="biography.html" class="nav-btn btn-next">Back to Bio Overview &rarr;</a>
+        </div>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p class="author">Written by: Jay Ralph Carillo</p>
+    <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+    <p>Contact: <a href="mailto:jayralph@example.com">jayralph@example.com</a></p>
+    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Childhood | Jay Ralph Carillo</title>
+  
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+        background-color: #e0f2fe;
+        font-family: Arial, sans-serif;
+    }
+
+    .page-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .sidebar-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        width: 250px;
+        flex-shrink: 0;
+    }
+
+    .sidebar-card h3 {
+        margin-top: 0;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        font-size: 1.2rem;
+        color: #2c3e50;
+    }
+
+    .sidebar-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-card li {
+        margin-bottom: 12px;
+    }
+
+    .sidebar-card a {
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        display: block;
+        transition: color 0.2s;
+    }
+
+    .sidebar-card a:hover {
+        color: #5ca9e0;
+    }
+
+    .content-card {
+        background-color: white;
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        flex-grow: 1;
+    }
+
+    .story-image {
+        float: left;
+        width: 300px;
+        margin-right: 30px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .story-text p {
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+        text-align: justify;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .next-btn {
+        display: inline-block;
+        background-color: #5ca9e0;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .next-btn:hover {
+        background-color: #4a8dc0;
+    }
+
+    @media (max-width: 768px) {
+        .page-container {
+            flex-direction: column;
+        }
+        .sidebar-card, .content-card {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .story-image {
+            float: none;
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="top">
+    <div class="profile-section">
+      <img src="images/rap.jpg" alt="Jay Ralph Carillo" class="profile-image">
+      <div class="profile-info">
+        <h1>Jay Ralph Carillo</h1>
+        <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+      </div>
+    </div>
+  </header>
+
+   <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html"> Home</a></li>
+            <li><a href="biography.html"> Biography</a></li>
+            <li><a href="childhood.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Childhood</a></li>
+            <li><a href="teenage-year.html"> Teenage Years</a></li>
+            <li><a href="college-experience.html"> College Experience</a></li>
+            <li><a href="blog1.html"> Blog Part 1</a></li>
+            <li><a href="blog2.html"> Blog Part 2</a></li>
+            <li><a href="blog3.html"> Blog Part 3</a></li>
+            <li><a href="photogallery.html"> Photo Gallery</a></li>
+            <li><a href="my-beats.html"> My Beats</a></li>
+        </ul>
+    </nav>
+  <main id="main-content">
+    
+    <aside class="sidebar">
+      <h3>Quick Navigation</h3>
+      <ul>
+        <li><a href="biography.html">Bio Overview</a></li>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+        <li><a href="childhood.html"style="color: #5ca9e0; font-weight: bold;">Childhood Days</a></li>
+        <li><a href="teenage-year.html">Teenage Years</a></li>
+        <li><a href="college-experience.html">College Experience</a></li>
+      </ul>
+    </aside>
+
+    <div class="content-card clearfix">
+        <h2 style="margin-top: 0; color: #2c3e50; font-size: 2.2rem;">Childhood Days</h2>
+        <hr style="border: 0; border-top: 3px solid #5ca9e0; width: 80px; margin-bottom: 30px; margin-left: 0;">
+        
+        <img src="images/kid 2 pic.jpg" alt="Jay Ralph Carillo Childhood" class="story-image">
+        
+        <div class="story-text">
+            <p>As a child, I really loved being outdoors with my friends. We would gather almost every afternoon to play the popular games of the 90s. I remember playing <em>langit-lupa</em>, where we had to jump on higher ground to avoid getting tagged. We also played <em>tumbang-preso</em>, hitting the can with our slippers and running around excitedly.</p>
+            
+            <p>Another favorite was <em>patintero</em>, where we blocked each other's ways with fast movements. <em>Tagu-taguan</em>, or a game of hide-and-seek, was always exciting because we had to find the best hiding spots. There was also the game of <em>piko</em>, which involved hopping with balance and laughter on drawn squares.</p>
+            
+            <p>These games were more than fun; they taught us teamwork and creativity. Joy, energy, and endless afternoons were the contents of my childhood. The streets were our playground, and every day felt like an adventure.</p>
+            
+            <p>Eventually, these games later transformed into real sports. I started to play basketball with passion, then I got interested in volleyball. These sports built up my foundation for discipline and teamwork. Now, looking back, I see how these childhood memories have built me up to who I am today.</p>
+        </div>
+
+        <div style="text-align: right; margin-top: 40px; clear: both;">
+            <a href="teenage-year.html" class="next-btn">Next: Teenage Years &rarr;</a>
+        </div>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p class="author">Written by: Jay Ralph Carillo</p>
+    <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+    <p>Contact: <a href="mailto:jayralph@example.com">jayralph@example.com</a></p>
+    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

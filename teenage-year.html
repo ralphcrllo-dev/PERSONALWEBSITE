@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teenage Years | Jay Ralph Carillo</title>
+  
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+        background-color: #e0f2fe;
+        font-family: Arial, sans-serif;
+    }
+
+    .page-container {
+        display: flex;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .sidebar-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        width: 250px;
+        flex-shrink: 0;
+    }
+
+    .sidebar-card h3 {
+        margin-top: 0;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+        font-size: 1.2rem;
+        color: #2c3e50;
+    }
+
+    .sidebar-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar-card li {
+        margin-bottom: 12px;
+    }
+
+    .sidebar-card a {
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        display: block;
+        transition: color 0.2s;
+    }
+
+    .sidebar-card a:hover {
+        color: #5ca9e0;
+    }
+
+    .content-card {
+        background-color: white;
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        flex-grow: 1;
+    }
+
+    .story-image {
+        float: left;
+        width: 300px;
+        margin-right: 30px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .story-text p {
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 20px;
+        font-size: 1.05rem;
+        text-align: justify;
+    }
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .nav-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+    }
+
+    .btn-next {
+        background-color: #5ca9e0;
+        color: white;
+    }
+    .btn-next:hover {
+        background-color: #4a8dc0;
+    }
+    
+    .btn-back {
+        background-color: #eee;
+        color: #555;
+        margin-right: 10px;
+    }
+    .btn-back:hover {
+        background-color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+        .page-container {
+            flex-direction: column;
+        }
+        .sidebar-card, .content-card {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .story-image {
+            float: none;
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="top">
+    <div class="profile-section">
+      <img src="images/rap.jpg" alt="Jay Ralph Carillo" class="profile-image">
+      <div class="profile-info">
+        <h1>Jay Ralph Carillo</h1>
+        <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+      </div>
+    </div>
+  </header>
+
+   <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html"> Home</a></li>
+            <li><a href="biography.html"> Biography</a></li>
+            <li><a href="childhood.html"> Childhood</a></li>
+            <li><a href="teenage-year.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Teenage Years</a></li>
+            <li><a href="college-experience.html"> College Experience</a></li>
+            <li><a href="blog1.html"> Blog Part 1</a></li>
+            <li><a href="blog2.html"> Blog Part 2</a></li>
+            <li><a href="blog3.html"> Blog Part 3</a></li>
+            <li><a href="photogallery.html"> Photo Gallery</a></li>
+            <li><a href="my-beats.html"> My Beats</a></li>
+        </ul>
+    </nav>
+
+  <main class="page-container" id="main-content">
+    
+    <aside class="sidebar">
+      <h3>Quick Navigation</h3>
+      <ul>
+        <li><a href="biography.html">Bio Overview</a></li>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+        <li><a href="childhood.html">Childhood Days</a></li>
+        <li><a href="teenage-year.html"style="color: #5ca9e0; font-weight: bold;">Teenage Years</a></li>
+        <li><a href="college-experience.html">College Experience</a></li>
+      </ul>
+    </aside>
+
+    <div class="content-card clearfix">
+        <h2 style="margin-top: 0; color: #2c3e50; font-size: 2.2rem;">Teenage Years</h2>
+        <hr style="border: 0; border-top: 3px solid #5ca9e0; width: 80px; margin-bottom: 30px; margin-left: 0;">
+        
+        <img src="images/Teenage year 1.jpg" alt="Jay Ralph Carillo Teenage Years" class="story-image">
+        
+        <div class="story-text">
+            <p>I have spent my teenage years in Quezon City, studying in private schools. I was not alone in school because my cousins and brothers were with me, which made it all the more meaningful. That school became special to me because it was where I met all my friends who completed my teenage years.</p>
+            
+            <p>I still remember how much we loved to play basketball before the pandemic. We traveled to places just to play basketball. Sometimes, these games caused fights with other groups we encountered. And though there were fights, those moments became special memories.</p>
+            
+            <p>There was even an instance when our group had an outing. In that outing, some of my friends argued because of teasing. The argument blew into a physical fight. We were mad at each other, but we all went home together. Although misunderstandings occurred, they reconciled before going to our respective houses.</p>
+            
+            <p>My teenage years were full of laughter, sporty times, and lessons about loyalty. Basketball was not just basketball; it was a way of bonding. Those friendships I built during those years remain valuable to me. My teenage years molded my social life and taught me resilience.</p>
+        </div>
+
+        <div style="text-align: right; margin-top: 40px; clear: both;">
+            <a href="childhood.html" class="nav-btn btn-back">← Previous Chapter</a>
+            <a href="college-experience.html" class="nav-btn btn-next">Next: College Experience &rarr;</a>
+        </div>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
