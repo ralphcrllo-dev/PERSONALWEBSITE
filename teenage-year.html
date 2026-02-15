@@ -69,13 +69,23 @@
         flex-grow: 1;
     }
 
-    .story-image {
+    .story-image-link {
         float: left;
-        width: 300px;
         margin-right: 30px;
         margin-bottom: 20px;
+        cursor: pointer;
+    }
+
+    .story-image {
+        width: 300px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .story-image-link:hover .story-image {
+        transform: scale(1.02);
     }
 
     .story-text p {
@@ -127,10 +137,12 @@
             width: 100%;
             box-sizing: border-box;
         }
-        .story-image {
+        .story-image-link {
             float: none;
-            width: 100%;
             margin-right: 0;
+        }
+        .story-image {
+            width: 100%;
         }
     }
   </style>
@@ -179,7 +191,9 @@
         <h2 style="margin-top: 0; color: #2c3e50; font-size: 2.2rem;">Teenage Years</h2>
         <hr style="border: 0; border-top: 3px solid #5ca9e0; width: 80px; margin-bottom: 30px; margin-left: 0;">
         
-        <img src="images/Teenage year 1.jpg" alt="Jay Ralph Carillo Teenage Years" class="story-image">
+        <a href="images/Teenage year 1.jpg" target="photo_view" class="story-image-link">
+            <img src="images/Teenage year 1.jpg" alt="Jay Ralph Carillo Teenage Years" class="story-image">
+        </a>
         
         <div class="story-text">
             <p>I have spent my teenage years in Quezon City, studying in private schools. I was not alone in school because my cousins and brothers were with me, which made it all the more meaningful. That school became special to me because it was where I met all my friends who completed my teenage years.</p>

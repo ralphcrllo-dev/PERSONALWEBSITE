@@ -69,13 +69,23 @@
         flex-grow: 1;
     }
 
-    .story-image {
+    .story-image-link {
         float: left;
-        width: 300px;
         margin-right: 30px;
         margin-bottom: 20px;
+        cursor: pointer;
+    }
+
+    .story-image {
+        width: 300px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .story-image-link:hover .story-image {
+        transform: scale(1.02);
     }
 
     .story-text p {
@@ -115,10 +125,12 @@
             width: 100%;
             box-sizing: border-box;
         }
-        .story-image {
+        .story-image-link {
             float: none;
-            width: 100%;
             margin-right: 0;
+        }
+        .story-image {
+            width: 100%;
         }
     }
   </style>
@@ -166,7 +178,9 @@
         <h2 style="margin-top: 0; color: #2c3e50; font-size: 2.2rem;">Childhood Days</h2>
         <hr style="border: 0; border-top: 3px solid #5ca9e0; width: 80px; margin-bottom: 30px; margin-left: 0;">
         
-        <img src="images/kid 2 pic.jpg" alt="Jay Ralph Carillo Childhood" class="story-image">
+        <a href="images/kid 2 pic.jpg" target="photo_view" class="story-image-link">
+            <img src="images/kid 2 pic.jpg" alt="Jay Ralph Carillo Childhood" class="story-image">
+        </a>
         
         <div class="story-text">
             <p>As a child, I really loved being outdoors with my friends. We would gather almost every afternoon to play the popular games of the 90s. I remember playing <em>langit-lupa</em>, where we had to jump on higher ground to avoid getting tagged. We also played <em>tumbang-preso</em>, hitting the can with our slippers and running around excitedly.</p>
