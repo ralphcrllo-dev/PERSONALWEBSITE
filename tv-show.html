@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My TV Show Collection | Jay Ralph Carillo</title>
+    <link rel="stylesheet" href="style.css"> 
     <style>
-        /* Reuse the same CSS structure for consistency */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
@@ -17,7 +17,6 @@
             flex-direction: column;
         }
 
-        /* HEADER & NAV */
         header {
             background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
             color: white;
@@ -39,12 +38,10 @@
         }
         nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92, 169, 224, 0.2); }
 
-        /* LAYOUT */
         main {
             display: flex; gap: 40px; max-width: 1300px; margin: 40px auto; padding: 0 20px; align-items: flex-start;
         }
 
-        /* SIDEBAR */
         .sidebar {
             flex: 0 0 260px; background: white; padding: 30px; border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 5px solid #2c5364;
@@ -61,12 +58,10 @@
             background: #f0f9ff; color: #5ca9e0; border-left-color: #5ca9e0; transform: translateX(5px);
         }
 
-        /* CONTENT & CARDS */
         .content { flex: 1; }
         .page-header { margin-bottom: 30px; border-bottom: 2px solid #2c5364; padding-bottom: 15px; }
         .page-header h2 { font-family: Georgia, serif; font-size: 2.2rem; color: #2c5364; }
 
-        /* Genre Card Design */
         .genre-card {
             display: flex; background: white; border-radius: 15px; overflow: hidden; margin-bottom: 30px;
             text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.6);
@@ -89,7 +84,8 @@
         .genre-card:hover .view-btn { background: #2c5364; }
 
         footer { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 30px 20px; margin-top: auto; }
-        
+        footer a { color: #5ca9e0; text-decoration: none; }
+
         @media (max-width: 900px) {
             main { flex-direction: column; }
             .sidebar { width: 100%; position: static; margin-bottom: 30px; }
@@ -100,28 +96,29 @@
 </head>
 <body>
 
-    <header>
-        <h1>Jay Ralph Carillo</h1>
-        <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+    <header id="top">
+        <div class="profile-section">
+            <img src="images/rap.jpg" alt="Jay Ralph Carillo" class="profile-image">
+            <div class="profile-info">
+                <h1>Jay Ralph Carillo</h1>
+                <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+            </div>
+        </div>
     </header>
 
     <nav role="navigation" aria-label="Main navigation">
         <ul>
-            <li><a href="index.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Home</a></li>
+            <li><a href="index.html"> Home</a></li>
             <li><a href="biography.html"> Biography</a></li>
-            <li><a href="childhood.html"> Childhood</a></li>
-            <li><a href="teenage-year.html"> Teenage Years</a></li>
-            <li><a href="college-experience.html"> College Experience</a></li>
             <li><a href="blog1.html"> Blog Part 1</a></li>
             <li><a href="blog2.html"> Blog Part 2</a></li>
             <li><a href="blog3.html"> Blog Part 3</a></li>
             <li><a href="photogallery.html"> Photo Gallery</a></li>
             <li><a href="my-beats.html"> My Beats</a></li>
             <li><a href="my-movies.html"> My Movies</a></li>
-            <li><a href="tv-show.html"> Tv Show</a></li>
+            <li><a href="tv-show.html" style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Tv Show</a></li>
         </ul>
     </nav>
-
 
     <main>
         <aside class="sidebar">
@@ -177,10 +174,10 @@
     </main>
 
     <footer role="contentinfo">
-    <p class="author">Written by: Jay Ralph Carillo</p>
-    <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
-    <p>Contact: <a href="mailto:ralphcarillo02@gmail.com">ralphcarillo02@gmail.com</a></p>
-    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
-  </footer>
+        <p class="author">Written by: Jay Ralph Carillo</p>
+        <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+        <p>Contact: <a href="mailto:ralphcarillo02@gmail.com">ralphcarillo02@gmail.com</a></p>
+        <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+    </footer>
 </body>
 </html>
