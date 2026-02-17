@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure | Jay Ralph Carillo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Raleway:wght@400;500;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Raleway', Tahoma, sans-serif;
+            background: linear-gradient(to bottom, #dff1ff, #cfe9f7);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white; text-align: center; padding: 40px 20px;
+        }
+        header h1 { font-family: Georgia, serif; font-size: 2.5rem; margin-bottom: 5px; }
+        header p { color: #5ca9e0; font-style: italic; }
+
+        nav {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
+        nav a {
+            display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600;
+            transition: 0.3s; border-bottom: 3px solid transparent;
+        }
+        nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92,169,224,0.2); }
+
+
+        main {
+            display: flex; gap: 40px; max-width: 1300px;
+            margin: 40px auto; padding: 0 20px;
+            align-items: flex-start; flex: 1;
+        }
+
+
+        .sidebar {
+            flex: 0 0 260px; background: white; padding: 30px;
+            border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid #2c5364; position: sticky; top: 80px;
+        }
+        .sidebar h2 {
+            font-family: Georgia, serif; color: #2c5364;
+            margin-bottom: 20px; border-bottom: 2px solid #eee;
+            padding-bottom: 10px; font-size: 1.5rem;
+        }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a {
+            text-decoration: none; color: #555; font-weight: 500;
+            display: block; padding: 10px 15px; border-radius: 6px;
+            transition: 0.3s; border-left: 3px solid transparent;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background: #f0f9ff; color: #5ca9e0;
+            border-left-color: #5ca9e0; transform: translateX(5px);
+        }
+
+        .content { flex: 1; min-width: 0; }
+
+        .section-title {
+            font-family: 'Cinzel', Georgia, serif; font-size: 1.1rem; letter-spacing: 4px;
+            color: #2c5364; text-transform: uppercase; margin-bottom: 30px;
+            display: flex; align-items: center; gap: 15px;
+        }
+        .section-title::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, #2c5364, transparent); }
+
+        .movie-card {
+            background: white; border-radius: 18px; margin-bottom: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid rgba(92,169,224,0.15);
+            overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeUp 0.5s ease both;
+        }
+        .movie-card:nth-child(1){animation-delay:0.05s;} .movie-card:nth-child(2){animation-delay:0.10s;}
+        .movie-card:nth-child(3){animation-delay:0.15s;} .movie-card:nth-child(4){animation-delay:0.20s;}
+        .movie-card:nth-child(5){animation-delay:0.25s;}
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+        .movie-card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(44,83,100,0.15); }
+
+        .card-header { display: flex; align-items: stretch; }
+
+        .rank-badge {
+            flex: 0 0 75px; background: linear-gradient(180deg, #1a3d1a, #2d5a27);
+            color: white; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            font-family: 'Cinzel', Georgia, serif; padding: 20px 0;
+        }
+        .rank-badge .num  { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+        .rank-badge .label{ font-size: 0.5rem; letter-spacing: 2px; opacity: 0.65; margin-top: 5px; }
+        .rank-badge.gold   { background: linear-gradient(180deg, #b8860b, #ffd700); color: #1a1a1a; }
+        .rank-badge.silver { background: linear-gradient(180deg, #777, #bbb);       color: #1a1a1a; }
+        .rank-badge.bronze { background: linear-gradient(180deg, #8B4513, #cd7f32); color: white;   }
+
+        .movie-info { padding: 22px 28px; flex: 1; border-bottom: 1px solid #f0f4f8; }
+        .movie-info h3 { font-family: Georgia, serif; font-size: 1.35rem; color: #1a3a4a; margin-bottom: 6px; }
+        .movie-info p  { color: #666; line-height: 1.65; font-size: 0.95rem; }
+
+        .star-row { display: flex; gap: 3px; margin-bottom: 8px; }
+        .star { color: #ffc300; font-size: 0.95rem; } .star.empty { color: #ddd; }
+
+        .video-label {
+            background: linear-gradient(to right, #1a3d1a, #2d5a27);
+            color: #90ee90; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            padding: 8px 20px; display: flex; align-items: center; gap: 8px;
+        }
+        .video-label::before { content: '▶'; font-size: 0.65rem; }
+
+        .video-wrapper {
+            background: #000; position: relative; width: 100%; padding-top: 52%;
+        }
+        .video-wrapper iframe {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: none; display: block;
+        }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: #2c5364; text-decoration: none; font-weight: 600;
+            margin-bottom: 30px; padding: 10px 22px;
+            background: white; border-radius: 50px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08); transition: 0.3s;
+        }
+        .back-link:hover { background: #2c5364; color: white; transform: translateX(-4px); }
+
+        footer {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white; text-align: center; padding: 30px 20px; margin-top: auto;
+        }
+        footer a { color: #5ca9e0; text-decoration: none; }
+
+        @media (max-width: 900px) {
+            main { flex-direction: column; }
+            .sidebar { width: 100%; position: static; margin-bottom: 30px; flex: none; }
+        }
+        @media (max-width: 600px) {
+            .genre-hero h2 { font-size: 2rem; }
+            .movie-info { padding: 16px 18px; }
+            .rank-badge { flex: 0 0 58px; }
+            .rank-badge .num { font-size: 1.7rem; }
+            .video-wrapper { padding-top: 56%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="profile-info">
+        <h1>Adventure</h1>
+        <p>Worlds beyond imagination, journeys that never end.</p>
+    </div>
+</header>
+
+
+<main>
+
+    <aside class="sidebar">
+        <h2>Quick Navigation</h2>
+        <ul>
+            <li><a href="my-movies.html">Overview</a></li>
+            <li><a href="movies-actions.html">Action / Sci-Fi</a></li>
+            <li><a href="movies-adventure.html" class="active">Adventure</a></li>
+            <li><a href="movies-sports.html">Sports Film</a></li>
+        </ul>
+    </aside>
+
+    <div class="content">
+        <a href="my-movies.html" class="back-link">← Back to My Film Collection</a>
+        <div class="section-title">Top 5 Picks</div>
+
+
+        <div class="movie-card">
+            <div class="card-header">
+                <div class="rank-badge gold"><span class="num">1</span><span class="label">TOP</span></div>
+                <div class="movie-info">
+                    <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <h3>Jurassic World</h3>
+                    <p>The original dinosaur chaos. Still holds up decades later.</p>
+                </div>
+            </div>
+            <div class="video-label">Featured Clip</div>
+            <div class="video-wrapper">
+                <iframe width="1039" height="519" src="https://www.youtube.com/embed/o7iHZW-4cw0?list=PLkfIPTcTnsPZI9Fr2b4APMHM88PLVhfSv" title="Jurassic world (2015) FULL HD 1080p - Opening scene Legendary movie clips" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+
+        <div class="movie-card">
+            <div class="card-header">
+                <div class="rank-badge silver"><span class="num">2</span><span class="label">RANK</span></div>
+                <div class="movie-info">
+                    <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <h3>Avatar</h3>
+                    <p>Visual masterpiece. Pandora feels like a real planet.</p>
+                </div>
+            </div>
+            <div class="video-label">Featured Clip</div>
+            <div class="video-wrapper">
+                <iframe width="996" height="560" src="https://www.youtube.com/embed/RNj2cH5yjNA" title="AVATAR Full Movie 2024: Pandora World | Superhero FXL Action Movies 2024 in English (Game Movie)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+
+        <div class="movie-card">
+            <div class="card-header">
+                <div class="rank-badge bronze"><span class="num">3</span><span class="label">RANK</span></div>
+                <div class="movie-info">
+                    <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span></div>
+                    <h3>Jumanji Welcom To The Jungle</h3>
+                    <p>Classic adventure chaos inside a board game.</p>
+                </div>
+            </div>
+            <div class="video-label">Featured Clip</div>
+            <div class="video-wrapper">
+                <iframe width="996" height="560" src="https://www.youtube.com/embed/acP6lV2HQSs" title="Jumanji Welcome to the Jungle Full Movie 2017 | Alex Wolff, Nick Jonas, Kat Altman | Fact &amp; Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+
+        <div class="movie-card">
+            <div class="card-header">
+                <div class="rank-badge"><span class="num">4</span><span class="label">RANK</span></div>
+                <div class="movie-info">
+                    <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span></div>
+                    <h3>The Lord of the Rings: The Fellowship of the Ring</h3>
+                    <p>The beginning of one of the greatest fantasy trilogies ever made.</p>
+                </div>
+            </div>
+            <div class="video-label">Featured Clip</div>
+            <div class="video-wrapper">
+                <iframe width="996" height="560" src="https://www.youtube.com/embed/QI-1c5CRe24" title="The Lord of the Rings: The Fellowship of the Ring (2001) Movie | Elijah Wood | React And Reviews" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+
+        <div class="movie-card">
+            <div class="card-header">
+                <div class="rank-badge"><span class="num">5</span><span class="label">RANK</span></div>
+                <div class="movie-info">
+                    <div class="star-row"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span></div>
+                    <h3>The Chronicles of Narnia: The Lion, the Witch and the Wardrobe</h3>
+                    <p>Magical world, epic battles, childhood nostalgia.</p>
+                </div>
+            </div>
+            <div class="video-label">Featured Clip</div>
+            <div class="video-wrapper">
+                <iframe width="996" height="560" src="https://www.youtube.com/embed/NLugwuFeXg8" title="The Chronicles of Narnia 1 (2005) Movie | Georgie Henley | Tilda Swinton | React And Reviews" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer role="contentinfo">
+    <p>Written by: Jay Ralph Carillo</p>
+    <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
+    <p>Contact: <a href="mailto:ralphcarillo02@gmail.com">ralphcarillo02@gmail.com</a></p>
+    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+</footer>
+</body>
+</html>
