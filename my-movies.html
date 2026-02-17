@@ -3,173 +3,465 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Film Collection | Jay Ralph Carillo</title>
-    <link rel="stylesheet" href="style.css"> 
+    <title>My Film Tickets Collection | Jay Ralph Carillo</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom, #dff1ff, #cfe9f7);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
+        body { font-family: Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #dff1ff, #cfe9f7); color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 40px 20px; }
         header h1 { font-family: Georgia, serif; font-size: 2.5rem; margin-bottom: 5px; }
         header p { color: #5ca9e0; font-style: italic; }
-
-        nav {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+        nav { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
-        nav a {
-            display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600;
-            transition: 0.3s; border-bottom: 3px solid transparent;
-        }
-        nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92, 169, 224, 0.2); }
-
-        main {
-            display: flex; gap: 40px; max-width: 1300px; margin: 40px auto; padding: 0 20px; align-items: flex-start;
-        }
-
-        .sidebar {
-            flex: 0 0 260px; background: white; padding: 30px; border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 5px solid #2c5364;
-            position: sticky; top: 100px;
-        }
+        nav a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600; transition: 0.3s; border-bottom: 3px solid transparent; }
+        nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92,169,224,0.2); }
+        main { display: flex; gap: 40px; max-width: 1300px; margin: 40px auto; padding: 0 20px; align-items: flex-start; flex: 1; }
+        .sidebar { flex: 0 0 260px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 5px solid #2c5364; position: sticky; top: 80px; }
         .sidebar h2 { font-family: Georgia, serif; color: #2c5364; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.5rem; }
         .sidebar ul { list-style: none; }
         .sidebar li { margin-bottom: 8px; }
-        .sidebar a {
-            text-decoration: none; color: #555; font-weight: 500; display: block; padding: 10px 15px;
-            border-radius: 6px; transition: 0.3s; border-left: 3px solid transparent;
-        }
-        .sidebar a:hover, .sidebar a.active {
-            background: #f0f9ff; color: #5ca9e0; border-left-color: #5ca9e0; transform: translateX(5px);
-        }
-
-        .content { flex: 1; }
+        .sidebar a { text-decoration: none; color: #555; font-weight: 500; display: block; padding: 10px 15px; border-radius: 6px; transition: 0.3s; border-left: 3px solid transparent; }
+        .sidebar a:hover, .sidebar a.active { background: #f0f9ff; color: #5ca9e0; border-left-color: #5ca9e0; transform: translateX(5px); }
+        .content { flex: 1; min-width: 0; }
         .page-header { margin-bottom: 30px; border-bottom: 2px solid #2c5364; padding-bottom: 15px; }
         .page-header h2 { font-family: Georgia, serif; font-size: 2.2rem; color: #2c5364; }
+        .page-header p { color: #666; margin-top: 5px; font-style: italic; }
+        .genre-heading { font-family: Georgia, serif; font-size: 1.3rem; color: white; background: linear-gradient(to right, #0f2027, #2c5364); padding: 12px 22px; border-radius: 10px; margin: 30px 0 18px; display: flex; align-items: center; gap: 10px; }
 
-        .genre-card {
-            display: flex; background: white; border-radius: 15px; overflow: hidden; margin-bottom: 30px;
-            text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.6);
-            transition: all 0.4s ease; height: 250px;
-        }
-        .genre-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(92, 169, 224, 0.25); }
-        
-        .card-image-wrapper { flex: 0 0 40%; overflow: hidden; position: relative; }
-        .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .genre-card:hover .card-image-wrapper img { transform: scale(1.1); }
-        
-        .card-content { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
-        .card-content h3 { font-family: Georgia, serif; font-size: 1.8rem; color: #2c5364; margin-bottom: 10px; }
-        .card-content p { color: #666; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
-        
-        .view-btn {
-            align-self: flex-start; background: #5ca9e0; color: white; padding: 10px 25px;
-            border-radius: 50px; font-weight: bold; font-size: 0.9rem; transition: background 0.3s;
-        }
-        .genre-card:hover .view-btn { background: #2c5364; }
-
+        /* Cinema Card */
+        .cinema-card { background: white; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 6px 24px rgba(0,0,0,0.09); overflow: hidden; border: 1px solid rgba(44,83,100,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .cinema-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(44,83,100,0.15); }
+        .card-banner { background: linear-gradient(to right, #111820 0%, #1c2d3a 55%, #1a1a3a 100%); padding: 16px 22px; display: flex; align-items: center; gap: 18px; }
+        .play-circle { width: 56px; height: 56px; flex-shrink: 0; border-radius: 50%; background: rgba(80,130,180,0.25); border: 2px solid #5ca9e0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .banner-meta { flex: 1; }
+        .now-showing-label { font-size: 0.68rem; color: #5ca9e0; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+        .banner-title { font-family: Georgia, serif; font-size: 1.4rem; color: white; font-weight: bold; line-height: 1.2; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .pg-badge { background: #4a8ec2; color: white; font-size: 0.62rem; font-weight: 800; padding: 2px 7px; border-radius: 4px; letter-spacing: 1px; }
+        .view-btn { background: #3a7fc1; color: white; padding: 9px 22px; border-radius: 50px; font-weight: bold; font-size: 0.82rem; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.3s; }
+        .view-btn:hover { background: #2c5364; }
+        .card-body { display: flex; }
+        .poster-col { flex: 0 0 155px; padding: 18px 14px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .poster-box { width: 118px; height: 168px; border-radius: 8px; background: linear-gradient(135deg, #0f2027, #2c5364); box-shadow: 0 4px 14px rgba(0,0,0,0.2); overflow: hidden; }
+        .poster-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .watchlist-link { font-size: 0.72rem; color: #3a7fc1; text-decoration: none; display: flex; align-items: center; gap: 4px; }
+        .watchlist-link:hover { color: #0f2027; }
+        .details-col { flex: 1; padding: 18px 20px 18px 0; display: flex; gap: 24px; }
+        .detail-main { flex: 1; }
+        .detail-side { flex: 0 0 155px; border-left: 1px solid #eee; padding-left: 18px; }
+        .dlabel { font-size: 0.7rem; font-weight: 800; color: #1a3a4a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; margin-top: 12px; }
+        .dlabel:first-child { margin-top: 0; }
+        .dvalue { font-size: 0.87rem; color: #555; line-height: 1.55; }
+        .genre-tag { display: inline-block; background: #e8f0fb; color: #1a3a6a; font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+        .parental-note { font-size: 0.78rem; color: #888; margin-top: 8px; }
         footer { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 30px 20px; margin-top: auto; }
         footer a { color: #5ca9e0; text-decoration: none; }
-
-        @media (max-width: 900px) {
-            main { flex-direction: column; }
-            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
-            .genre-card { flex-direction: column; height: auto; }
-            .card-image-wrapper { height: 200px; }
-        }
+        @media (max-width: 900px) { main { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; flex: none; } }
+        @media (max-width: 640px) { .card-body { flex-direction: column; } .poster-col { flex-direction: row; } .details-col { padding: 0 16px 16px; flex-direction: column; } .detail-side { border-left: none; border-top: 1px solid #eee; padding: 12px 0 0; flex: none; } .card-banner { flex-wrap: wrap; } }
     </style>
 </head>
 <body>
 
 
-    <nav role="navigation" aria-label="Main navigation">
+
+<nav role="navigation" aria-label="Main navigation">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="biography.html">Biography</a></li>
+        <li><a href="blog1.html">Blog Part 1</a></li>
+        <li><a href="blog2.html">Blog Part 2</a></li>
+        <li><a href="blog3.html">Blog Part 3</a></li>
+        <li><a href="photogallery.html">Photo Gallery</a></li>
+        <li><a href="my-beats.html">My Beats</a></li>
+        <li><a href="my-movies.html" style="background-color:rgba(92,169,224,0.2);border-bottom-color:#5ca9e0;color:#5ca9e0;">My Movies</a></li>
+        <li><a href="tv-show.html">Tv Show</a></li>
+    </ul>
+</nav>
+
+<main>
+    <aside class="sidebar">
+        <h2>Quick Navigation</h2>
         <ul>
-            <li><a href="index.html"> Home</a></li>
-            <li><a href="biography.html"> Biography</a></li>
-            <li><a href="blog1.html"> Blog Part 1</a></li>
-            <li><a href="blog2.html"> Blog Part 2</a></li>
-            <li><a href="blog3.html"> Blog Part 3</a></li>
-            <li><a href="photogallery.html"> Photo Gallery</a></li>
-            <li><a href="my-beats.html"> My Beats</a></li>
-            <li><a href="my-movies.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> My Movies</a></li>
-            <li><a href="tv-show.html"> Tv Show</a></li>
+            <li><a href="my-movies.html" class="active">Overview</a></li>
+            <li><a href="movies-actions.html">Action / Sci-Fi</a></li>
+            <li><a href="movies-adventure.html">Adventure</a></li>
+            <li><a href="movies-sports.html">Sports Film</a></li>
         </ul>
-    </nav>
+    </aside>
 
-    <main>
-        <aside class="sidebar">
-            <h2>Quick Navigation</h2>
-            <ul>
-                <li><a href="my-movies.html" class="active">Overview</a></li>
-                <li><a href="movies-actions.html">Action</a></li>
-                <li><a href="movies-adventure.html">Comedy</a></li>
-                <li><a href="movies-sports.html">Romance</a></li>
-            </ul>
-        </aside>
-
-        <div class="content">
-            <div class="page-header">
-                <h2>My Film Collection</h2>
-                <p>Select a genre below to explore my favorite movies, films, and actions.</p>
-            </div>
-
-            <a href="movies-actions.html" class="genre-card">
-                <div class="card-image-wrapper">
-                    <img src="images/marvel.webp" alt="Action Movies">
-                </div>
-                <div class="card-content">
-                    <h3>Action/Sci-Fi</h3>
-                    <p>Epic battles, impossible odds, and heroes who changed everything.</p>
-                    <span class="view-btn">View Collection &rarr;</span>
-                </div>
-            </a>
-
-            <a href="movies-adventure.html" class="genre-card">
-                <div class="card-image-wrapper">
-                     <img src="images/adventure.jpg" alt="Comedy Movies">
-                </div>
-                <div class="card-content">
-                    <h3>Adventure</h3>
-                    <p>Worlds beyond imagination, journeys that never end.</p>
-                    <span class="view-btn">View Collection &rarr;</span>
-                </div>
-            </a>
-
-            <a href="movies-sports.html" class="genre-card">
-                <div class="card-image-wrapper">
-                     <img src="images/sports.jpg" alt="Romance Movies">
-                </div>
-                <div class="card-content">
-                    <h3>Sports Film</h3>
-                    <p>Basketball, grind, glory — stories that go beyond the game.</p>
-                    <span class="view-btn">View Collection &rarr;</span>
-                </div>
-            </a>
-
+    <div class="content">
+        <div class="page-header">
+            <h2>My Film Tickets Collection</h2>
+            <p>Select a genre below to explore my favorite movies, films, and actions.</p>
         </div>
-    </main>
 
-    <footer role="contentinfo">
-    <p class="author">Written by: Jay Ralph Carillo</p>
-    <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
-    <p>Contact: <a href="mailto:ralphcarillo02@gmail.com">ralphcarillo02@gmail.com</a></p>
-    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+        <div class="genre-heading"> Action / Sci-Fi</div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Avengers: Endgame <span class="pg-badge">PG</span></div></div>
+                <a href="movies-actions.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/avengers-endgame.jpg" alt="Avengers: Endgame"></div><a href="movies-actions.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Robert Downey Jr., Chris Evans, Scarlett Johansson</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">The Avengers assemble for one final mission to reverse Thanos' snap and restore the universe.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Anthony Russo &amp; Joe Russo</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">3h 1m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">26 April 2019</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action/Sci-Fi</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Avengers: Infinity War <span class="pg-badge">PG</span></div></div>
+                <a href="movies-actions.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/infinity-war.jpg" alt="Avengers: Infinity War"></div><a href="movies-actions.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Robert Downey Jr., Chris Hemsworth, Josh Brolin</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">The Avengers and Guardians unite to stop Thanos from collecting all Infinity Stones.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Anthony Russo &amp; Joe Russo</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 29m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">27 April 2018</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action/Sci-Fi</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Captain America: Civil War <span class="pg-badge">PG</span></div></div>
+                <a href="movies-actions.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/civil-war.jpg" alt="Captain America: Civil War"></div><a href="movies-actions.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Chris Evans, Robert Downey Jr., Sebastian Stan</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Political pressure divides the Avengers, forcing Captain America and Iron Man into conflict.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Anthony Russo &amp; Joe Russo</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 27m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">6 May 2016</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action/Sci-Fi</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Thor: Ragnarok <span class="pg-badge">PG</span></div></div>
+                <a href="movies-actions.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/thor-ragnarok.png" alt="Thor: Ragnarok"></div><a href="movies-actions.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Chris Hemsworth, Tom Hiddleston, Cate Blanchett</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Thor must escape captivity and stop Hela from destroying Asgard.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Taika Waititi</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 10m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">3 November 2017</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action/Sci-Fi</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Black Panther <span class="pg-badge">PG</span></div></div>
+                <a href="movies-actions.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/black-panther.jpeg" alt="Black Panther"></div><a href="movies-actions.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Chadwick Boseman, Michael B. Jordan</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">King T'Challa faces challenges to his throne while protecting Wakanda's future.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Ryan Coogler</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 14m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">16 February 2018</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action/Sci-Fi</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="genre-heading"> Adventure</div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Jurassic World <span class="pg-badge">PG</span></div></div>
+                <a href="movies-adventure.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/jurassic-world.jpg" alt="Jurassic World"></div><a href="movies-adventure.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Sam Neill, Laura Dern</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Dinosaurs run wild after a theme park's cloning experiment fails.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Steven Spielberg</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 7m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">11 June 1993</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Adventure</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Avatar <span class="pg-badge">PG</span></div></div>
+                <a href="movies-adventure.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/avatar.jpg" alt="Avatar"></div><a href="movies-adventure.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Sam Worthington, Zoe Saldaña</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A Marine explores Pandora and becomes torn between orders and his new world.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">James Cameron</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 42m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">18 December 2009</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Adventure</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Jumanji: Welcome to the Jungle <span class="pg-badge">PG</span></div></div>
+                <a href="movies-adventure.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/jumanji.jpg" alt="Jumanji"></div><a href="movies-adventure.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Robin Williams, Dwayne Johnson</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A magical board game unleashes wild jungle dangers into the real world.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Joe Johnston</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">1h 44m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">15 November 1995</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Adventure</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">The Lord of the Rings: Fellowship of the Ring <span class="pg-badge">PG</span></div></div>
+                <a href="movies-adventure.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/lotr-fellowship.jpg" alt="The Lord of the Rings: Fellowship of the Ring"></div><a href="movies-adventure.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Elijah Wood, Ian McKellen</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A hobbit begins a perilous journey to destroy a powerful ring.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Peter Jackson</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">3h 28m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">19 December 2001</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Adventure</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">The Chronicles of Narnia <span class="pg-badge">G</span></div></div>
+                <a href="movies-adventure.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/narnia.jpg" alt="The Chronicles of Narnia"></div><a href="movies-adventure.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Georgie Henley, Tilda Swinton, Liam Neeson</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Four siblings enter a magical world and help defeat an evil queen.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Andrew Adamson</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 23m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">9 December 2005</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Adventure</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="genre-heading"> Sports Film</div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Uncle Drew <span class="pg-badge">PG</span></div></div>
+                <a href="movies-sports.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/uncle-drew.jpg" alt="Uncle Drew"></div><a href="movies-sports.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Kyrie Irving, Shaquille O'Neal, Chris Webber</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A young coach recruits a team of veteran players for a big streetball tournament.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Charles Stone III</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">1h 43m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">29 June 2018</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Sports</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Hustle <span class="pg-badge">PG</span></div></div>
+                <a href="movies-sports.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/hustle.jpg" alt="Hustle"></div><a href="movies-sports.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Adam Sandler, Juancho Hernangomez</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A scout discovers a hidden talent and risks everything to bring him to the NBA.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Jeremiah Zagar</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">1h 57m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">8 June 2022</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Sports</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Like Mike <span class="pg-badge">G</span></div></div>
+                <a href="movies-sports.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/like-mike.jpg" alt="Like Mike"></div><a href="movies-sports.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Bow Wow, Morris Chestnut</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">An orphan gains NBA-level skills after wearing magical sneakers.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">John Schultz</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">1h 39m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">3 July 2002</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Sports</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Coach Carter <span class="pg-badge">PG</span></div></div>
+                <a href="movies-sports.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/coach-carter.jpg" alt="Coach Carter"></div><a href="movies-sports.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Samuel L. Jackson, Rob Brown</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A coach benches his undefeated team to teach discipline and academics.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Thomas Carter</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">2h 16m</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">14 January 2005</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Sports</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">🎬</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">The Last Dance <span class="pg-badge">PG</span></div></div>
+                <a href="movies-sports.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/last-dance.jpg" alt="The Last Dance"></div><a href="movies-sports.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Michael Jordan, Scottie Pippen, Dennis Rodman</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A documentary chronicling Jordan and the Chicago Bulls' 1990s dynasty.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Jason Hehir</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Runtime</div><div class="dvalue">10 Episodes</div>
+                        <div class="dlabel">Release Date</div><div class="dvalue">19 April 2020</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Documentary</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer role="contentinfo">
+</footer>

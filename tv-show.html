@@ -4,172 +4,452 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My TV Show Collection | Jay Ralph Carillo</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="style.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to bottom, #dff1ff, #cfe9f7);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
+        body { font-family: Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #dff1ff, #cfe9f7); color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 40px 20px; }
         header h1 { font-family: Georgia, serif; font-size: 2.5rem; margin-bottom: 5px; }
         header p { color: #5ca9e0; font-style: italic; }
-
-        nav {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-            position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+        nav { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
-        nav a {
-            display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600;
-            transition: 0.3s; border-bottom: 3px solid transparent;
-        }
-        nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92, 169, 224, 0.2); }
-
-        main {
-            display: flex; gap: 40px; max-width: 1300px; margin: 40px auto; padding: 0 20px; align-items: flex-start;
-        }
-
-        .sidebar {
-            flex: 0 0 260px; background: white; padding: 30px; border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 5px solid #2c5364;
-            position: sticky; top: 100px;
-        }
+        nav a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600; transition: 0.3s; border-bottom: 3px solid transparent; }
+        nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92,169,224,0.2); }
+        main { display: flex; gap: 40px; max-width: 1300px; margin: 40px auto; padding: 0 20px; align-items: flex-start; flex: 1; }
+        .sidebar { flex: 0 0 260px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 5px solid #2c5364; position: sticky; top: 80px; }
         .sidebar h2 { font-family: Georgia, serif; color: #2c5364; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.5rem; }
         .sidebar ul { list-style: none; }
         .sidebar li { margin-bottom: 8px; }
-        .sidebar a {
-            text-decoration: none; color: #555; font-weight: 500; display: block; padding: 10px 15px;
-            border-radius: 6px; transition: 0.3s; border-left: 3px solid transparent;
-        }
-        .sidebar a:hover, .sidebar a.active {
-            background: #f0f9ff; color: #5ca9e0; border-left-color: #5ca9e0; transform: translateX(5px);
-        }
-
-        .content { flex: 1; }
+        .sidebar a { text-decoration: none; color: #555; font-weight: 500; display: block; padding: 10px 15px; border-radius: 6px; transition: 0.3s; border-left: 3px solid transparent; }
+        .sidebar a:hover, .sidebar a.active { background: #f0f9ff; color: #5ca9e0; border-left-color: #5ca9e0; transform: translateX(5px); }
+        .content { flex: 1; min-width: 0; }
         .page-header { margin-bottom: 30px; border-bottom: 2px solid #2c5364; padding-bottom: 15px; }
         .page-header h2 { font-family: Georgia, serif; font-size: 2.2rem; color: #2c5364; }
+        .page-header p { color: #666; margin-top: 5px; font-style: italic; }
+        .genre-heading { font-family: Georgia, serif; font-size: 1.3rem; color: white; background: linear-gradient(to right, #0f2027, #2c5364); padding: 12px 22px; border-radius: 10px; margin: 30px 0 18px; display: flex; align-items: center; gap: 10px; }
 
-        .genre-card {
-            display: flex; background: white; border-radius: 15px; overflow: hidden; margin-bottom: 30px;
-            text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid rgba(255,255,255,0.6);
-            transition: all 0.4s ease; height: 250px;
-        }
-        .genre-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(92, 169, 224, 0.25); }
-        
-        .card-image-wrapper { flex: 0 0 40%; overflow: hidden; position: relative; }
-        .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .genre-card:hover .card-image-wrapper img { transform: scale(1.1); }
-        
-        .card-content { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
-        .card-content h3 { font-family: Georgia, serif; font-size: 1.8rem; color: #2c5364; margin-bottom: 10px; }
-        .card-content p { color: #666; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
-        
-        .view-btn {
-            align-self: flex-start; background: #5ca9e0; color: white; padding: 10px 25px;
-            border-radius: 50px; font-weight: bold; font-size: 0.9rem; transition: background 0.3s;
-        }
-        .genre-card:hover .view-btn { background: #2c5364; }
-
+        .cinema-card { background: white; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 6px 24px rgba(0,0,0,0.09); overflow: hidden; border: 1px solid rgba(44,83,100,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .cinema-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(44,83,100,0.15); }
+        .card-banner { background: linear-gradient(to right, #111820 0%, #1c2d3a 55%, #1a1a3a 100%); padding: 16px 22px; display: flex; align-items: center; gap: 18px; }
+        .play-circle { width: 56px; height: 56px; flex-shrink: 0; border-radius: 50%; background: rgba(80,130,180,0.25); border: 2px solid #5ca9e0; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+        .banner-meta { flex: 1; }
+        .now-showing-label { font-size: 0.68rem; color: #5ca9e0; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+        .banner-title { font-family: Georgia, serif; font-size: 1.4rem; color: white; font-weight: bold; line-height: 1.2; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .pg-badge { background: #4a8ec2; color: white; font-size: 0.62rem; font-weight: 800; padding: 2px 7px; border-radius: 4px; letter-spacing: 1px; }
+        .view-btn { background: #3a7fc1; color: white; padding: 9px 22px; border-radius: 50px; font-weight: bold; font-size: 0.82rem; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.3s; }
+        .view-btn:hover { background: #2c5364; }
+        .card-body { display: flex; }
+        .poster-col { flex: 0 0 155px; padding: 18px 14px 14px 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .poster-box { width: 118px; height: 168px; border-radius: 8px; background: linear-gradient(135deg, #0f2027, #2c5364); box-shadow: 0 4px 14px rgba(0,0,0,0.2); overflow: hidden; }
+        .poster-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .watchlist-link { font-size: 0.72rem; color: #3a7fc1; text-decoration: none; display: flex; align-items: center; gap: 4px; }
+        .watchlist-link:hover { color: #0f2027; }
+        .details-col { flex: 1; padding: 18px 20px 18px 0; display: flex; gap: 24px; }
+        .detail-main { flex: 1; }
+        .detail-side { flex: 0 0 155px; border-left: 1px solid #eee; padding-left: 18px; }
+        .dlabel { font-size: 0.7rem; font-weight: 800; color: #1a3a4a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; margin-top: 12px; }
+        .dlabel:first-child { margin-top: 0; }
+        .dvalue { font-size: 0.87rem; color: #555; line-height: 1.55; }
+        .genre-tag { display: inline-block; background: #e8f0fb; color: #1a3a6a; font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+        .parental-note { font-size: 0.78rem; color: #888; margin-top: 8px; }
         footer { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 30px 20px; margin-top: auto; }
         footer a { color: #5ca9e0; text-decoration: none; }
-
-        @media (max-width: 900px) {
-            main { flex-direction: column; }
-            .sidebar { width: 100%; position: static; margin-bottom: 30px; }
-            .genre-card { flex-direction: column; height: auto; }
-            .card-image-wrapper { height: 200px; }
-        }
+        @media (max-width: 900px) { main { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; flex: none; } }
+        @media (max-width: 640px) { .card-body { flex-direction: column; } .poster-col { flex-direction: row; } .details-col { padding: 0 16px 16px; flex-direction: column; } .detail-side { border-left: none; border-top: 1px solid #eee; padding: 12px 0 0; flex: none; } .card-banner { flex-wrap: wrap; } }
     </style>
 </head>
 <body>
 
 
 
-    <nav role="navigation" aria-label="Main navigation">
+<nav role="navigation" aria-label="Main navigation">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="biography.html">Biography</a></li>
+        <li><a href="blog1.html">Blog Part 1</a></li>
+        <li><a href="blog2.html">Blog Part 2</a></li>
+        <li><a href="blog3.html">Blog Part 3</a></li>
+        <li><a href="photogallery.html">Photo Gallery</a></li>
+        <li><a href="my-beats.html">My Beats</a></li>
+        <li><a href="my-movies.html">My Movies</a></li>
+        <li><a href="tv-show.html" style="background-color:rgba(92,169,224,0.2);border-bottom-color:#5ca9e0;color:#5ca9e0;">Tv Show</a></li>
+    </ul>
+</nav>
+
+<main>
+    <aside class="sidebar">
+        <h2>Quick Navigation</h2>
         <ul>
-            <li><a href="index.html"> Home</a></li>
-            <li><a href="biography.html"> Biography</a></li>
-            <li><a href="blog1.html"> Blog Part 1</a></li>
-            <li><a href="blog2.html"> Blog Part 2</a></li>
-            <li><a href="blog3.html"> Blog Part 3</a></li>
-            <li><a href="photogallery.html"> Photo Gallery</a></li>
-            <li><a href="my-beats.html"> My Beats</a></li>
-            <li><a href="my-movies.html"> My Movies</a></li>
-            <li><a href="tv-show.html" style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Tv Show</a></li>
+            <li><a href="tv-show.html" class="active">Overview</a></li>
+            <li><a href="tv-drama.html">Drama TV Shows</a></li>
+            <li><a href="tv-action.html">Action TV Shows</a></li>
+            <li><a href="tv-shows-reality.html">Reality TV Shows</a></li>
         </ul>
-    </nav>
+    </aside>
 
-    <main>
-        <aside class="sidebar">
-            <h2>Quick Navigation</h2>
-            <ul>
-                <li><a href="tv-show.html" class="active">Overview</a></li>
-                <li><a href="tv-drama.html">Drama Tv Shows</a></li>
-                <li><a href="tv-action.html">Action Tv Shows</a></li>
-                <li><a href="tv-shows-reality.html">Reality Tv Shows</a></li>
-            </ul>
-        </aside>
-
-        <div class="content">
-            <div class="page-header">
-                <h2>My TV Show Collection</h2>
-                <p>Select a genre below to explore my favorite television, series, dramas, reality shows</p>
-            </div>
-
-            <a href="tv-drama.html" class="genre-card">
-                <div class="card-image-wrapper">
-                    <img src="images/tv-drama.jpg" alt="Drama">
-                </div>
-                <div class="card-content">
-                    <h3>Drama Tv Shows</h3>
-                    <p>Captivating stories, emotional rollercoasters, and unforgettable drama series in the Philippines.</p>
-                    <span class="view-btn">View Collection &rarr;</span>
-                </div>
-            </a>
-
-            <a href="tv-action.html" class="genre-card">
-                <div class="card-image-wrapper">
-                    <img src="images/tv-action.png" alt="Action Series">
-                </div>
-                <div class="card-content">
-                    <h3>Action Tv Shows</h3>
-                    <p>Philippine TV action series - High-stakes thrillers, superhero sagas, and intense combat series.</p>
-                    <span class="view-btn">View Collection &rarr;</span>
-                </div>
-            </a>
-
-            <a href="tv-shows-reality.html" class="genre-card">
-                <div class="card-image-wrapper">
-                    <img src="images/reality-show.webp" alt="Romance Series">
-                </div>
-                <div class="card-content">
-                    <h3>Reality Tv Shows</h3>
-                    <p>Shows often involve challenges, eliminations, public voting, or mentoring, and they focus on authentic reactions, personal stories, and unscripted drama.</p>
-                    <span class="view-btn">View Collection &rarr;</span>
-                </div>
-            </a>
-
+    <div class="content">
+        <div class="page-header">
+            <h2>My TV Show Collection</h2>
+            <p>Select a genre below to explore my favorite television, series, dramas, reality shows.</p>
         </div>
-    </main>
 
-    <footer role="contentinfo">
-        <p class="author">Written by: Jay Ralph Carillo</p>
-        <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
-        <p>Contact: <a href="mailto:ralphcarillo02@gmail.com">ralphcarillo02@gmail.com</a></p>
-        <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+
+        <div class="genre-heading"> Drama TV Shows</div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Encantadia <span class="pg-badge">GMA</span></div></div>
+                <a href="tv-drama.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/encantadia.jpg" alt="Encantadia"></div><a href="tv-drama.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Kylie Padilla, Glaiza de Castro, Gabbi Garcia</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Four royal sisters protect magical gems that maintain balance in their fantasy world.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Mark A. Reyes</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">GMA Network</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Fantasy Drama</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Maria Clara at Ibarra <span class="pg-badge">GMA</span></div></div>
+                <a href="tv-drama.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/maria-clara.jpg" alt="Maria Clara at Ibarra"></div><a href="tv-drama.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Barbie Forteza, Dennis Trillo, Julie Anne San Jose</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A modern student enters Jose Rizal's novels and experiences history firsthand.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Zig Dulay</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">GMA Network</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Historical Drama</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Esperanza <span class="pg-badge">ABS</span></div></div>
+                <a href="tv-drama.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/esperanza.jpg" alt="Esperanza"></div><a href="tv-drama.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Judy Ann Santos</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A young woman endures family struggles while holding onto hope.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Jerry Lopez Sineneng</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">ABS-CBN</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Classic Drama</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Got to Believe <span class="pg-badge">ABS</span></div></div>
+                <a href="tv-drama.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/got-to-believe.jpg" alt="Got to Believe"></div><a href="tv-drama.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Kathryn Bernardo, Daniel Padilla</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Two childhood friends reunite and rediscover love amid challenges.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Cathy Garcia-Molina</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">ABS-CBN</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Romantic Drama</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">The House Arrest of Us <span class="pg-badge">ABS</span></div></div>
+                <a href="tv-drama.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/house-arrest.jpg" alt="The House Arrest of Us"></div>
+                    <a href="tv-drama.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Kathryn Bernardo, Daniel Padilla</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">An engaged couple quarantines together, testing love and family bonds.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Richard Arellano</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">ABS-CBN</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Rom-Com</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="genre-heading"> Action TV Shows</div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">FPJ's Batang Quiapo <span class="pg-badge">ABS</span></div></div>
+                <a href="tv-action.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/batang-quiapo.jpg" alt="FPJ's Batang Quiapo"></div><a href="tv-action.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Coco Martin</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A young man rises in Manila's underworld, facing crime and betrayal.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Coco Martin</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">ABS-CBN</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action Crime</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">FPJ's Ang Probinsyano <span class="pg-badge">ABS</span></div></div>
+                <a href="tv-action.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/probinsyano.jpg" alt="FPJ's Ang Probinsyano"></div><a href="tv-action.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Coco Martin</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A dedicated cop fights crime and corruption nationwide.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Malu Sevilla</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">ABS-CBN</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action Drama</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Incognito <span class="pg-badge">PH</span></div></div>
+                <a href="tv-action.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/incognito.jpg" alt="Incognito"></div><a href="tv-action.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Daniel Padilla, Richard Gutierrez</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Undercover operatives take dangerous missions while hiding identities.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Lester Pimentel Ong</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">Philippine TV</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action Thriller</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Royal Blood <span class="pg-badge">GMA</span></div></div>
+                <a href="tv-action.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/royal-blood.jpg" alt="Royal Blood"></div><a href="tv-action.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Dingdong Dantes, Megan Young</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Siblings investigate their father's mysterious death.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Dominic Zapata</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">GMA Network</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Crime Mystery</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Alyas Robin Hood <span class="pg-badge">GMA</span></div></div>
+                <a href="tv-action.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/alyas-robin-hood.jpg" alt="Alyas Robin Hood"></div><a href="tv-action.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Dingdong Dantes</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">A lawyer secretly fights injustice to protect the poor.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Dominic Zapata</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">GMA Network</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Action Drama</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="genre-heading"> Reality / Variety Shows</div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Pinoy Big Brother <span class="pg-badge">ABS</span></div></div>
+                <a href="tv-shows-reality.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/pbb.jpg" alt="Pinoy Big Brother"></div><a href="tv-shows-reality.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Host</div><div class="dvalue">Toni Gonzaga (former main host)</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Strangers live together under constant surveillance competing for a prize.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Laurenti Dyogi</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">ABS-CBN</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Reality</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">The Voice Kids <span class="pg-badge">ABS</span></div></div>
+                <a href="tv-shows-reality.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/voice-kids.webp" alt="The Voice Kids"></div><a href="tv-shows-reality.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Coaches</div><div class="dvalue">Lea Salonga, Bamboo</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Talented kids compete in blind auditions judged by celebrity coaches.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Johnny Manahan</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">ABS-CBN</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Singing Competition</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Survivor Philippines <span class="pg-badge">GMA</span></div></div>
+                <a href="tv-shows-reality.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/survivor.png" alt="Survivor Philippines"></div><a href="tv-shows-reality.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Host</div><div class="dvalue">Paolo Bediones</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Contestants survive island challenges to win the grand prize.</div>
+                        <div class="dlabel">Network</div><div class="dvalue">GMA Network</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">GMA Network</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Survival Competition</span></div>
+                        <p class="parental-note">Parental Guidance Recommended</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">StarStruck <span class="pg-badge">GMA</span></div></div>
+                <a href="tv-shows-reality.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/starstruck.jpg" alt="StarStruck"></div><a href="tv-shows-reality.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Host</div><div class="dvalue">Dingdong Dantes (former host)</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Aspiring actors compete for stardom through weekly challenges.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">Louie Ignacio</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">GMA Network</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Talent Search</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cinema-card">
+            <div class="card-banner">
+                <div class="play-circle">📺</div>
+                <div class="banner-meta"><div class="now-showing-label">Now Showing</div><div class="banner-title">Kuwentong Gilas <span class="pg-badge">S5</span></div></div>
+                <a href="tv-shows-reality.html" class="view-btn">View Collection →</a>
+            </div>
+            <div class="card-body">
+                <div class="poster-col"><div class="poster-box"><img src="images/kuwentong-gilas.jpg" alt="Kuwentong Gilas"></div><a href="tv-shows-reality.html" class="watchlist-link">▷ Watch Clips</a></div>
+                <div class="details-col">
+                    <div class="detail-main">
+                        <div class="dlabel">Cast</div><div class="dvalue">Paul Lee – Professional basketball player and Gilas Pilipinas member</div>
+                        <div class="dlabel">Synopsis</div><div class="dvalue">Personal stories behind Gilas Pilipinas players reveal sacrifice, passion, and the sport's meaning.</div>
+                        <div class="dlabel">Director</div><div class="dvalue">One Sports Documentary Team</div>
+                    </div>
+                    <div class="detail-side">
+                        <div class="dlabel">Network</div><div class="dvalue">One Sports</div>
+                        <div class="dlabel">Genre</div><div class="dvalue"><span class="genre-tag">Sports Documentary</span></div>
+                        <p class="parental-note">General Audiences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer role="contentinfo">
+</footer>
