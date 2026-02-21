@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me | Jay Ralph Carillo</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .contact-section {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .contact-header {
+            margin-bottom: 40px;
+        }
+
+        .contact-header h2 {
+            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            color: #5ca9e0;
+            margin-bottom: 15px;
+        }
+
+        .contact-header p {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            text-indent: 0;
+            text-align: center;
+        }
+
+        .contact-divider {
+            height: 1px;
+            background: #eee;
+            margin: 30px auto;
+            width: 80%;
+        }
+
+        .contact-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 30px 20px;
+            border-radius: 12px;
+            width: 300px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #5ca9e0;
+        }
+
+        .contact-card h3 {
+            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.3rem;
+            color: #2c5364;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .contact-card p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+            text-indent: 0;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #5ca9e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: #2c5364;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+
+<nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html"> Home</a></li>
+            <li><a href="biography.html"> Biography</a></li>
+            <li><a href="blog1.html"> Blog Part 1</a></li>
+            <li><a href="blog2.html"> Blog Part 2</a></li>
+            <li><a href="blog3.html"> Blog Part 3</a></li>
+            <li><a href="photogallery.html"> Photo Gallery</a></li>
+            <li><a href="my-beats.html"> My Beats</a></li>
+            <li><a href="my-movies.html"> My Movies</a></li>
+            <li><a href="tv-show.html"> Tv Show</a></li>
+            <li><a href="dream-places.html"> Dream Places</a></li>
+            <li><a href="bucket-list.html"> Bucket List</a></li>
+            <li><a href="contact.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Contact</a></li>
+        </ul>
+    </nav>
+<main>
+    <div class="contact-section">
+        <div class="contact-header">
+            <h2>Get In Touch</h2>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Feel free to reach out through any of the platforms below.</p>
+        </div>
+
+        <div class="contact-divider"></div>
+
+        <div class="contact-cards">
+            <div class="contact-card">
+                <h3>Email Me</h3>
+                <p>For detailed inquiries, school projects, and professional collaborations.</p>
+                <a href="mailto:carillo.jayralph@ue.edu.ph" class="contact-link">
+                    <span class="icon">📧</span> carillo.jayralph@ue.edu.ph
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <h3>Call / Text</h3>
+                <p>Available for quick messages and urgent matters during standard hours.</p>
+                <a href="tel:09087097157" class="contact-link">
+                    <span class="icon">📱</span> 09087097157
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <h3>Facebook</h3>
+                <p>Connect with me on social media to see my latest updates and dunks.</p>
+                <a href="https://www.facebook.com/ralphcrllo" target="_blank" class="contact-link">
+                    <span class="icon">📘</span> Jay Ralph Carillo
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

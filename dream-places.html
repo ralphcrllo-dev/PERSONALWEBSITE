@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Places | Jay Ralph Carillo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #dff1ff, #cfe9f7); color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+        header { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 40px 20px; }
+        header h1 { font-family: Georgia, serif; font-size: 2.5rem; margin-bottom: 5px; }
+        header p { color: #5ca9e0; font-style: italic; }
+        nav { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
+        nav a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600; transition: 0.3s; border-bottom: 3px solid transparent; }
+        nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92,169,224,0.2); }
+        
+        main { max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        
+        .page-header { margin-bottom: 30px; border-bottom: 2px solid #2c5364; padding-bottom: 15px; }
+        .page-header h2 { font-family: Georgia, serif; font-size: 2.2rem; color: #2c5364; }
+
+        .map-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            display: inline-block;
+            width: 100%; /* Ensures container stays within limits */
+        }
+        
+        .map-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto; /* Centers the image */
+        }
+        
+        .instruction { margin-bottom: 20px; color: #555; }
+
+        #hoverDescription {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background-color: rgba(44, 83, 100, 0.1);
+            border-left: 5px solid #2c5364;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            color: #1a3b47;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        footer { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 30px 20px; margin-top: auto; }
+    </style>
+    <script>
+        function writeText(text) {
+            document.getElementById('hoverDescription').innerText = text;
+        }
+        function dissolveText() {
+            document.getElementById('hoverDescription').innerText = '';
+        }
+    </script>
+</head>
+<body>
+
+<nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li><a href="index.html"> Home</a></li>
+            <li><a href="biography.html"> Biography</a></li>
+            <li><a href="blog1.html"> Blog Part 1</a></li>
+            <li><a href="blog2.html"> Blog Part 2</a></li>
+            <li><a href="blog3.html"> Blog Part 3</a></li>
+            <li><a href="photogallery.html"> Photo Gallery</a></li>
+            <li><a href="my-beats.html"> My Beats</a></li>
+            <li><a href="my-movies.html"> My Movies</a></li>
+            <li><a href="tv-show.html"> Tv Show</a></li>
+            <li><a href="dream-places.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Dream Places</a></li>
+            <li><a href="bucket-list.html"> Bucket List</a></li>
+            <li><a href="contact.html"> Contact</a></li>
+        </ul>
+    </nav>
+
+<main>
+    <div class="page-header">
+        <h2>My Dream Destinations</h2>
+        <p>Click on the locations in the collage below to explore them. Hover to see a preview.</p>
+    </div>
+
+    <div class="map-container">
+        <img src="images/dream-collage1.jpg" usemap="#travelmap" alt="Dream Travel Collage" width="1333" height="1999">
+        <map name="travelmap">
+            <area shape="poly" coords="90,282,205,443,337,292,223,125" href="paris.html"
+                  onMouseOver="writeText('Paris – The City of Light, famous for the Eiffel Tower and exquisite cuisine.')"
+                  onMouseOut="dissolveText();">
+
+            <area shape="poly" coords="921,133,921,479,1079,481,1087,754,1260,756,1244,134" href="maldives.html"
+                  onMouseOver="writeText('Maldives – Overwater bungalows and crystal‑clear turquoise waters.')"
+                  onMouseOut="dissolveText();">
+
+            <area shape="poly" coords="199,1331,28,1707,322,1709" href="egypt.html"
+                  onMouseOver="writeText('Egypt – Home to the Great Pyramids, the Sphinx, and ancient history.')"
+                  onMouseOut="dissolveText();">
+
+            <area shape="rect" coords="662,1482,1257,1881" href="dubai.html"
+                  onMouseOver="writeText('Dubai – A futuristic city with the Burj Khalifa and luxury shopping.')"
+                  onMouseOut="dissolveText();">
+
+            <area shape="poly" coords="319,949,655,784,710,782,1020,939,701,1099,637,1098" href="japan.html"
+                  onMouseOver="writeText('Japan – Cherry blossoms, ancient temples, and cutting‑edge technology.')"
+                  onMouseOut="dissolveText();">
+        </map>
+        <div id="hoverDescription"></div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+<script>
+    imageMapResize();
+</script>
+
+</body>
+</html>
