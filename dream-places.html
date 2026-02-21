@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dream Places | Jay Ralph Carillo</title>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #dff1ff, #cfe9f7); color: #333; min-height: 100vh; display: flex; flex-direction: column; }
         header { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 40px 20px; }
         header h1 { font-family: Georgia, serif; font-size: 2.5rem; margin-bottom: 5px; }
         header p { color: #5ca9e0; font-style: italic; }
+        
         nav { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; }
         nav a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600; transition: 0.3s; border-bottom: 3px solid transparent; }
         nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92,169,224,0.2); }
+
+        nav li.dropdown { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; background: linear-gradient(to bottom, #182d38, #203a43); min-width: 220px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1000; border-radius: 0 0 8px 8px; top: 100%; left: 0; overflow: hidden; }
+        .dropdown-content a { color: white; padding: 12px 20px; text-decoration: none; display: block; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.3s ease; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover, .dropdown-content a:focus { background-color: rgba(92, 169, 224, 0.15); color: #5ca9e0; border-left: 3px solid #5ca9e0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); outline: none; }
+        nav li.dropdown:hover .dropdown-content { display: block; }
+        nav li.dropdown:hover .dropbtn { background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0; }
         
         main { max-width: 1000px; margin: 40px auto; padding: 0 20px; text-align: center; }
         
@@ -26,7 +36,7 @@
             border-radius: 12px;
             box-shadow: 0 6px 24px rgba(0,0,0,0.1);
             display: inline-block;
-            width: 100%; /* Ensures container stays within limits */
+            width: 100%;
         }
         
         .map-container img {
@@ -34,7 +44,7 @@
             height: auto;
             border-radius: 8px;
             display: block;
-            margin: 0 auto; /* Centers the image */
+            margin: 0 auto;
         }
         
         .instruction { margin-bottom: 20px; color: #555; }
@@ -69,21 +79,35 @@
 <body>
 
 <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li><a href="index.html"> Home</a></li>
-            <li><a href="biography.html"> Biography</a></li>
-            <li><a href="blog1.html"> Blog Part 1</a></li>
-            <li><a href="blog2.html"> Blog Part 2</a></li>
-            <li><a href="blog3.html"> Blog Part 3</a></li>
-            <li><a href="photogallery.html"> Photo Gallery</a></li>
-            <li><a href="my-beats.html"> My Beats</a></li>
-            <li><a href="my-movies.html"> My Movies</a></li>
-            <li><a href="tv-show.html"> Tv Show</a></li>
-            <li><a href="dream-places.html"style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;"> Dream Places</a></li>
-            <li><a href="bucket-list.html"> Bucket List</a></li>
-            <li><a href="contact.html"> Contact</a></li>
-        </ul>
-    </nav>
+    <ul>
+        <li><a href="index.html">About Me</a></li>
+        <li><a href="biography.html">Biography</a></li>
+        
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Blogs ▾</a>
+            <div class="dropdown-content">
+                <a href="blog1.html">Part 1: Beyond the Keyboard</a>
+                <a href="blog2.html">Part 2: Sleep or Success</a>
+                <a href="blog3.html">Part 3: Cybersecurity Mission</a>
+            </div>
+        </li>
+
+        <li><a href="photogallery.html">Photo Gallery</a></li>
+        
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">My Media ▾</a>
+            <div class="dropdown-content">
+                <a href="my-beats.html">🎵 My Beats</a>
+                <a href="my-movies.html">🎬 My Movies</a>
+                <a href="tv-show.html">📺 My TV Shows</a>
+            </div>
+        </li>
+
+        <li><a href="dream-places.html" style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;">Dream Places</a></li>
+        <li><a href="bucket-list.html">Bucket List</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
 <main>
     <div class="page-header">
