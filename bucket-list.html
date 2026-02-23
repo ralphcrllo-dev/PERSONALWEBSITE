@@ -4,101 +4,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bucket List | Jay Ralph Carillo</title>
-    
-    <link rel="stylesheet" href="style.css">
-
     <style>
-        .page-header { margin-bottom: 30px; border-bottom: 2px solid #2c5364; padding-bottom: 15px; text-align: center; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #dff1ff, #cfe9f7); color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+
+        header { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 40px 20px; }
+        header h1 { font-family: Georgia, serif; font-size: 2.5rem; margin-bottom: 5px; }
+        header p { color: #5ca9e0; font-style: italic; }
+
+        nav { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; padding: 0; margin: 0; }
+        nav a { display: block; color: white; text-decoration: none; padding: 15px 25px; font-weight: 600; transition: 0.3s; border-bottom: 3px solid transparent; }
+        nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92,169,224,0.2); }
+
+        nav li { position: relative; display: inline-block; }
+        .dropdown-content { display: none; position: absolute; background: linear-gradient(to bottom, #182d38, #203a43); min-width: 220px; box-shadow: 0px 8px 16px rgba(0,0,0,0.5); z-index: 1000; border-radius: 0 0 8px 8px; top: 100%; left: 0; overflow: hidden; }
+        .dropdown-content a { color: white; padding: 12px 20px; text-decoration: none; display: block; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; border-left: 3px solid transparent; transition: all 0.3s ease; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: rgba(92,169,224,0.15); color: #5ca9e0; border-left: 3px solid #5ca9e0; }
+        nav li:hover .dropdown-content { display: block; }
+        nav li:hover .dropbtn { background-color: rgba(92,169,224,0.2); border-bottom-color: #5ca9e0; color: #5ca9e0; }
+
+        /* ── MAIN CONTENT ── */
+        main {
+            width: 100%;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+            display: block;   /* explicitly block, not flex/grid */
+        }
+
+        /* ── PAGE HEADER ── */
+        .page-header {
+            width: 100%;
+            text-align: center;
+            border-bottom: 2px solid #2c5364;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
         .page-header h2 { font-family: Georgia, serif; font-size: 2.2rem; color: #2c5364; }
-        .page-header p { margin-top: 15px; font-size: 1.1rem; color: #444; line-height: 1.6; }
+        .page-header p { margin-top: 12px; font-size: 1.1rem; color: #444; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* ── BUCKET GRID ── */
+        .bucket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
 
         .bucket-card {
             background: white;
-            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            border-left: 5px solid #2c5364;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
         }
-        .bucket-card h3 { 
-            font-family: Georgia, serif; 
-            font-size: 1.8rem; 
-            color: #2c5364; 
-            margin-bottom: 15px; 
-            border-bottom: 2px solid #cfe9f7; 
-            padding-bottom: 10px; 
-        }
-        .bucket-card p { margin-bottom: 15px; line-height: 1.6; font-size: 1.05rem; }
-        .bucket-card ul { margin-left: 20px; margin-bottom: 15px; }
-        .bucket-card li { margin-bottom: 10px; line-height: 1.6; font-size: 1.05rem; }
-        .bucket-card li strong { color: #2c5364; }
+        .bucket-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+
+        .bucket-image { width: 100%; height: 220px; object-fit: cover; border-bottom: 4px solid #5ca9e0; display: block; }
+
+        .bucket-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .bucket-info h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #2c5364; margin-bottom: 10px; }
+        .bucket-info p { font-size: 1rem; color: #555; line-height: 1.6; }
+
+        footer { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 30px 20px; margin-top: 60px; }
     </style>
 </head>
 <body>
-
 
 <nav role="navigation" aria-label="Main navigation">
     <ul>
         <li><a href="index.html">About Me</a></li>
         <li><a href="biography.html">Biography</a></li>
-        
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Blogs ▾</a>
+        <li>
+            <a href="#" class="dropbtn">Blogs ▾</a>
             <div class="dropdown-content">
                 <a href="blog1.html">Part 1: Beyond the Keyboard</a>
                 <a href="blog2.html">Part 2: Sleep or Success</a>
                 <a href="blog3.html">Part 3: Cybersecurity Mission</a>
             </div>
         </li>
-
         <li><a href="photogallery.html">Photo Gallery</a></li>
-        
-        <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">My Media ▾</a>
+        <li>
+            <a href="#" class="dropbtn">My Media ▾</a>
             <div class="dropdown-content">
                 <a href="my-beats.html">🎵 My Beats</a>
                 <a href="my-movies.html">🎬 My Movies</a>
                 <a href="tv-show.html">📺 My TV Shows</a>
             </div>
         </li>
-
         <li><a href="dream-places.html">Dream Places</a></li>
-        <li><a href="bucket-list.html" style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;">Bucket List</a></li>
+        <li><a href="bucket-list.html" style="background-color:rgba(92,169,224,0.2);border-bottom-color:#5ca9e0;color:#5ca9e0;">Bucket List</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
 </nav>
 
 <main>
-    <div class="content">
-        <div class="page-header">
-            <h2>My Ultimate Bucket List</h2>
-            <p>When I look ahead at what I want to accomplish in my lifetime, my dreams are driven by two completely different but equally demanding passions: pushing my physical limits on the basketball court and sharpening my mind to become a formidable force in the world of technology.</p>
+
+    <div class="page-header">
+        <h2>My Ultimate Bucket List</h2>
+        <p>Beyond the screens, the code, and the basketball courts, there is a whole world out there waiting to be explored. These are the once-in-a-lifetime experiences I am determined to cross off my list.</p>
+    </div>
+
+    <div class="bucket-grid">
+
+        <div class="bucket-card">
+            <img src="images/northern-lights.jpg" alt="Northern Lights" class="bucket-image">
+            <div class="bucket-info">
+                <h3>🌌 See the Northern Lights</h3>
+                <p>The farther north you go, the better your chances of witnessing the aurora borealis. I plan to take a trip to the freezing landscapes of Iceland or Sweden, stand under the vast night sky, and watch the northern lights come alive in all their breathtaking, multihued glory.</p>
+            </div>
         </div>
 
         <div class="bucket-card">
-            <h3>Pro Dunker in the Philippines</h3>
-            <p>Basketball is more than just a game in the Philippines; it is a cultural phenomenon. To stand out in a country that breathes basketball is a monumental challenge, but my ultimate athletic goal is to become a recognized professional dunker. This isn't just about jumping high; it’s about the art, the athleticism, and the showmanship.</p>
-            <ul>
-                <li><strong>Mastering the Craft:</strong> Dedicating years to rigorous plyometric training, strength conditioning, and biomechanics to maximize my vertical leap. I want to experience the thrill of perfecting gravity-defying moves like windmills, 360s, and between-the-legs dunks.</li>
-                <li><strong>Competing on the Big Stage:</strong> Stepping onto the hardwood under the bright lights of national slam dunk competitions (like the PBA All-Star weekend or FIBA 3x3 events) and hearing the roar of the Filipino crowd after executing a flawless dunk.</li>
-                <li><strong>Building a Legacy:</strong> Inspiring the next generation of Filipino athletes by proving that with enough discipline and grind, we can defy expectations and soar just as high as anyone else in the world.</li>
-            </ul>
+            <img src="images/scuba-diving.jpg" alt="Scuba Diving" class="bucket-image">
+            <div class="bucket-info">
+                <h3>🤿 Go Scuba Diving</h3>
+                <p>Colorful coral reefs, schools of tropical fish swimming in perfect synchrony, and maybe even dolphins dancing in the waves. I want to strap on a tank, dive beneath the surface, and experience the zero-gravity sensation of exploring the alien world hidden beneath the ocean.</p>
+            </div>
         </div>
 
         <div class="bucket-card">
-            <h3>Cybersecurity Professional</h3>
-            <p>While my physical goals require me to live above the rim, my professional goals require me to dive deep into the invisible networks that power our modern world. I have my sights set specifically on the high-stakes, fast-paced arena of Cybersecurity in the IT field.</p>
-            <ul>
-                <li><strong>Attaining Elite Certifications:</strong> Earning industry-leading credentials like the Certified Ethical Hacker (CEH), CompTIA Security+, and eventually the prestigious Certified Information Systems Security Professional (CISSP).</li>
-                <li><strong>Becoming a Digital Guardian:</strong> Experiencing the adrenaline rush of "Red Teaming" (ethical hacking) and "Blue Teaming" (defending systems). My goal is to work on the frontlines protecting sensitive data and national infrastructure from malicious cybercriminals.</li>
-                <li><strong>Continuous Evolution:</strong> Reaching a level of expertise where I am predicting cyber threats rather than just reacting to them. I hope to eventually mentor aspiring IT students and become a recognized leader in the field.</li>
-            </ul>
+            <img src="images/tattoo.jpg" alt="Tattoo" class="bucket-image">
+            <div class="bucket-info">
+                <h3>🖋️ Get a Tattoo</h3>
+                <p>Whether it represents my passion for technology, my relentless drive on the court, or a personal life philosophy, I want a permanent piece of art that tells the world exactly who I am.</p>
+            </div>
         </div>
 
         <div class="bucket-card">
-            <h3>The Common Thread: Discipline</h3>
-            <p>Though dunking a basketball and securing a network seem worlds apart, they both require the exact same foundation: relentless discipline, quick reflexes, continuous learning, and the resilience to keep trying after you fail. Whether I am breaking down a complex firewall or breaking the laws of gravity on the court, these two lifetime achievements will define my legacy.</p>
+            <img src="images/egypt-pyramids.jpg" alt="Pyramids of Egypt" class="bucket-image">
+            <div class="bucket-info">
+                <h3>🏜️ See the Pyramids</h3>
+                <p>I want to travel to Egypt to witness the Great Pyramids of Giza and the Sphinx. To touch the sun-baked stones that have stood the test of time is a profound connection to human engineering.</p>
+            </div>
         </div>
+
+        <div class="bucket-card">
+            <img src="images/surfing.jpg" alt="Surfing" class="bucket-image">
+            <div class="bucket-info">
+                <h3>🏄‍♂️ Learn to Surf</h3>
+                <p>I want to trade my keyboard for a surfboard and master the art of riding the waves. Learning to surf is about reading the ocean, timing the swell, and accepting wipeouts before catching that perfect, exhilarating ride to the shore.</p>
+            </div>
+        </div>
+
+        <div class="bucket-card">
+            <img src="images/submarine.jpg" alt="Submarine" class="bucket-image">
+            <div class="bucket-info">
+                <h3>⛴️ Ride a Submarine</h3>
+                <p>We know more about the moon than our own oceans. I want to descend into the abyss in a submarine and witness the incredible engineering that keeps the crushing pressure at bay while seeing mysterious marine life through a porthole.</p>
+            </div>
+        </div>
+
+        <div class="bucket-card">
+            <img src="images/skydiving.jpg" alt="Skydiving" class="bucket-image">
+            <div class="bucket-info">
+                <h3>🪂 Go Skydiving</h3>
+                <p>The ultimate adrenaline rush. The intense roar of the wind during freefall, followed by the peaceful silence as the parachute opens — jumping out of a perfectly good airplane is the definition of living life to the fullest.</p>
+            </div>
+        </div>
+
     </div>
 </main>
 
