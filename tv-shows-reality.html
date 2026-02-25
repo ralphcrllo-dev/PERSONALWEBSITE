@@ -9,6 +9,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Raleway:wght@400;500;600&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Raleway', Tahoma, sans-serif;
@@ -37,8 +39,6 @@
             transition: 0.3s; border-bottom: 3px solid transparent;
         }
         nav a:hover { color: #5ca9e0; border-bottom-color: #5ca9e0; background: rgba(92,169,224,0.2); }
-
-        
 
         main {
             display: flex; gap: 40px; max-width: 1300px;
@@ -146,6 +146,9 @@
             color: white; text-align: center; padding: 30px 20px; margin-top: auto;
         }
         footer a { color: #5ca9e0; text-decoration: none; }
+        
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background-color: #203a43; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 24px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease, background-color 0.3s ease, outline 0.3s ease, outline-offset 0.3s ease; z-index: 1000; outline: 0px solid transparent; }
+        .back-to-top:hover { background-color: #5ca9e0; outline: 3px solid #5ca9e0; outline-offset: 3px; transform: translateY(-5px); box-shadow: none; }
 
         @media (max-width: 900px) {
             main { flex-direction: column; }
@@ -160,7 +163,7 @@
         }
     </style>
 </head>
-<body>
+<body id="top">
 
 <header>
     <div class="profile-info">
@@ -283,11 +286,10 @@
     </div>
 </main>
 
-<footer role="contentinfo">
-    <p>Written by: Jay Ralph Carillo</p>
-    <p>Information Technology Student | Aspiring Cybersecurity Professional</p>
-    <p>Contact: <a href="mailto:ralphcarillo02@gmail.com">ralphcarillo02@gmail.com</a></p>
-    <p>&copy; 2026 Jay Ralph Carillo. All rights reserved.</p>
+<a href="#top" class="back-to-top" aria-label="Back to Top">↑</a>
+
+<footer>
+    <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>
 </footer>
 </body>
 </html>

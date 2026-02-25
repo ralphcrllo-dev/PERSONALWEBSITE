@@ -6,6 +6,7 @@
     <title>My Bucket List | Jay Ralph Carillo</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body { font-family: Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #dff1ff, #cfe9f7); color: #333; min-height: 100vh; display: flex; flex-direction: column; }
 
         header { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 40px 20px; }
@@ -72,10 +73,13 @@
         .bucket-info h3 { font-family: Georgia, serif; font-size: 1.4rem; color: #2c5364; margin-bottom: 10px; }
         .bucket-info p { font-size: 1rem; color: #555; line-height: 1.6; }
 
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background-color: #203a43; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 24px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease, background-color 0.3s ease, outline 0.3s ease, outline-offset 0.3s ease; z-index: 1000; outline: 0px solid transparent; }
+        .back-to-top:hover { background-color: #5ca9e0; outline: 3px solid #5ca9e0; outline-offset: 3px; transform: translateY(-5px); box-shadow: none; }
+
         footer { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 30px 20px; margin-top: 60px; }
     </style>
 </head>
-<body>
+<body id="top">
 
 <nav role="navigation" aria-label="Main navigation">
     <ul>
@@ -171,6 +175,8 @@
 
     </div>
 </main>
+
+<a href="#top" class="back-to-top" aria-label="Back to Top">↑</a>
 
 <footer>
     <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>

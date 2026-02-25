@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+        html { scroll-behavior: smooth; }
+
         .contact-section {
             background: white;
             padding: 50px 30px;
@@ -105,9 +107,12 @@
         .icon {
             font-size: 1.2rem;
         }
+
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background-color: #203a43; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 24px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease, background-color 0.3s ease, outline 0.3s ease, outline-offset 0.3s ease; z-index: 1000; outline: 0px solid transparent; }
+        .back-to-top:hover { background-color: #5ca9e0; outline: 3px solid #5ca9e0; outline-offset: 3px; transform: translateY(-5px); box-shadow: none; }
     </style>
 </head>
-<body>
+<body id="top">
 
 
 <nav role="navigation" aria-label="Main navigation">
@@ -176,6 +181,8 @@
         </div>
     </div>
 </main>
+
+<a href="#top" class="back-to-top" aria-label="Back to Top">↑</a>
 
 <footer>
     <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>

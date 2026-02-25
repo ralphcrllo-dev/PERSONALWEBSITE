@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body { font-family: Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(to bottom, #dff1ff, #cfe9f7); color: #333; min-height: 100vh; display: flex; flex-direction: column; }
         header { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 40px 20px; }
         header h1 { font-family: Georgia, serif; font-size: 2.5rem; margin-bottom: 5px; }
@@ -27,8 +28,6 @@
         .page-header h2 { font-family: Georgia, serif; font-size: 2.2rem; color: #2c5364; }
         .page-header p { color: #666; margin-top: 5px; font-style: italic; }
         .genre-heading { font-family: Georgia, serif; font-size: 1.3rem; color: white; background: linear-gradient(to right, #0f2027, #2c5364); padding: 12px 22px; border-radius: 10px; margin: 30px 0 18px; display: flex; align-items: center; gap: 10px; }
-
-        /* Cinema Card */
         .cinema-card { background: white; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 6px 24px rgba(0,0,0,0.09); overflow: hidden; border: 1px solid rgba(44,83,100,0.1); transition: transform 0.3s, box-shadow 0.3s; }
         .cinema-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(44,83,100,0.15); }
         .card-banner { background: linear-gradient(to right, #111820 0%, #1c2d3a 55%, #1a1a3a 100%); padding: 16px 22px; display: flex; align-items: center; gap: 18px; }
@@ -55,11 +54,13 @@
         .parental-note { font-size: 0.78rem; color: #888; margin-top: 8px; }
         footer { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); color: white; text-align: center; padding: 30px 20px; margin-top: auto; }
         footer a { color: #5ca9e0; text-decoration: none; }
+        .back-to-top { position: fixed; bottom: 30px; right: 30px; background-color: #203a43; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; font-size: 24px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s ease, background-color 0.3s ease, outline 0.3s ease, outline-offset 0.3s ease; z-index: 1000; outline: 0px solid transparent; }
+        .back-to-top:hover { background-color: #5ca9e0; outline: 3px solid #5ca9e0; outline-offset: 3px; transform: translateY(-5px); box-shadow: none; }
         @media (max-width: 900px) { main { flex-direction: column; } .sidebar { width: 100%; position: static; margin-bottom: 30px; flex: none; } }
         @media (max-width: 640px) { .card-body { flex-direction: column; } .poster-col { flex-direction: row; } .details-col { padding: 0 16px 16px; flex-direction: column; } .detail-side { border-left: none; border-top: 1px solid #eee; padding: 12px 0 0; flex: none; } .card-banner { flex-wrap: wrap; } }
     </style>
 </head>
-<body>
+<body id="top">
 
 <nav role="navigation" aria-label="Main navigation">
     <ul>
@@ -477,6 +478,8 @@
 
     </div>
 </main>
+
+<a href="#top" class="back-to-top" aria-label="Back to Top">↑</a>
 
 <footer>
     <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>
