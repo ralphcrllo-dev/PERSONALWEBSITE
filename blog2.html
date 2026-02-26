@@ -7,11 +7,11 @@
   <meta name="author" content="Jay Ralph Carillo">
   <title>Blog Part 2 | Jay Ralph Carillo</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
   <style>
+    html {
+        scroll-behavior: smooth;
+    }
+
     .next-btn {
         display: inline-block;
         background-color: #5ca9e0;
@@ -26,7 +26,19 @@
     .next-btn:hover {
         background-color: #4a8dc0;
     }
+
+    .blog-image {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 30px auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
   </style>
+</head>
+<body id="top">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
    <nav role="navigation" aria-label="Main navigation">
     <ul>
@@ -37,7 +49,7 @@
             <a href="#" class="dropbtn" style="background-color: rgba(92, 169, 224, 0.2); border-bottom-color: #5ca9e0; color: #5ca9e0;">Blogs ▾</a>
             <div class="dropdown-content">
                 <a href="blog1.html">Part 1: Beyond the Keyboard</a>
-                <a href="blog2.html"style="color: #5ca9e0; border-left: 3px solid #5ca9e0; background-color: rgba(92, 169, 224, 0.15);">Part 2: Sleep or Success</a>
+                <a href="blog2.html" style="color: #5ca9e0; border-left: 3px solid #5ca9e0; background-color: rgba(92, 169, 224, 0.15);">Part 2: Sleep or Success</a>
                 <a href="blog3.html">Part 3: Cybersecurity Mission</a>
             </div>
         </li>
@@ -57,7 +69,7 @@
         <li><a href="bucket-list.html">Bucket List</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
-</nav>
+  </nav>
 
   <main id="main-content">
     <div class="content">
@@ -77,14 +89,27 @@
             <li>Declining academic performance despite spending more time studying</li>
             <li>Physical symptoms including frequent headaches, weakened immune system, and digestive problems</li>
           </ul>
+
+          <a href="images/struggle.jpg" target="photo_view">
+          <img src="images/struggle.jpg" title="A person looking tired and stressed sitting at a desk with a computer" class="blog-image">
+        </a>
           
           <h3>The Breakthrough</h3>
-          <p>I made dunking my obsession. I tracked my vertical leap with a Vertec jump trainer, celebrated every inch gained, and committed to recovery and a strict diet. I studied videos of David Carlos "Air David," the number one Filipino pro dunker, rewinding his movements until I could almost feel his technique in my own jumps. I wasn't just training my body to jump higher, I was training my mind to believe.
+          <p>I made dunking my obsession. I tracked my vertical leap with a Vertec jump trainer, celebrated every inch gained, and committed to recovery and a strict diet. I studied videos of David Carlos "Air David," the number one Filipino pro dunker, rewinding his movements until I could almost feel his technique in my own jumps. I wasn't just training my body to jump higher, I was training my mind to believe.</p>
 
-Then came the breakthrough. One afternoon session, I exploded off the ground with everything I had. For the first time, the ball went over the rim and exploded into the net. The sound was pure adrenaline. My heart was pounding, my hands were shaking, and I knew that this was what I had been working towards. From that point onwards, I worked even harder. Windmills, tomahawks, every dunk was a new task, a new work of art. Every failure taught me timing and every success just made me hungrier. Dunking was no longer an art. Dunking was me.</p>
+          <p>Then came the breakthrough. One afternoon session, I exploded off the ground with everything I had. For the first time, the ball went over the rim and exploded into the net. The sound was pure adrenaline. My heart was pounding, my hands were shaking, and I knew that this was what I had been working towards. From that point onwards, I worked even harder. Windmills, tomahawks, every dunk was a new task, a new work of art. Every failure taught me timing and every success just made me hungrier. Dunking was no longer an art. Dunking was me.</p>
+
+          <a href="images/breakthrough.jpg" target="photo_view">
+          <img src="images/breakthrough.jpg" title="A person successfully dunking a basketball with a look of triumph" class="blog-image">
+        </a>
           
           <h3>The Learning Lesson</h3>
           <p>I have learned that dunking has taught me more than just how to jump. Dunking has provided me with the opportunities to acquire steadfastness, unyielding willpower, and the capacity for self-confidence. But what began as a complaint about not being able to touch the rim has become an exquisite transformation. Now, when I see the rim it is not just a rim. I can see all of the untiring hours of sweat and toil that have brought me to where I am today; Before my eyes is constant, determined perseverance in which only success will be greeted with success all the time. At last, Dunking has been more than just a dream, it's a living proof that even attempting to do those things one could never succeed in accomplishing turns out, if you do truly strive in order to match those impossible tasks accomplished, to be possible after all. This is just a beginning in my journey to become a pro dunker back in the Philippines.</p>
+          
+          <a href="images/learning-lesson.jpg" target="photo_view">
+          <img src="images/learning-lesson.jpg" title="A person reflecting on their journey with a basketball in their hands" class="blog-image">
+        </a>
+
         <div style="text-align: right; margin-top: 40px; clear: both;">
             <a href="blog3.html" class="next-btn">Next: Blog Part 3 &rarr;</a>
         </div>
@@ -97,6 +122,6 @@ Then came the breakthrough. One afternoon session, I exploded off the ground wit
 
   <footer>
     <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>
-</footer>
+  </footer>
 </body>
 </html>

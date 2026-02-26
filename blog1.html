@@ -7,11 +7,11 @@
   <meta name="author" content="Jay Ralph Carillo">
   <title>Blog Part 1 | Jay Ralph Carillo</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  
   <style>
+    html {
+        scroll-behavior: smooth;
+    }
+
     .next-btn {
         display: inline-block;
         background-color: #5ca9e0;
@@ -26,11 +26,21 @@
     .next-btn:hover {
         background-color: #4a8dc0;
     }
+
+    .blog-image {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 30px auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
   </style>
+</head>
+<body id="top">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-
-
-      <nav role="navigation" aria-label="Main navigation">
+  <nav role="navigation" aria-label="Main navigation">
     <ul>
         <li><a href="index.html">About Me</a></li>
         <li><a href="biography.html">Biography</a></li>
@@ -59,7 +69,7 @@
         <li><a href="bucket-list.html">Bucket List</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
-</nav>
+  </nav>
 
   <main id="main-content">
     <div class="content">
@@ -70,12 +80,25 @@
           <h3>Marathon</h3>
           <p>Everyday feels like a marathon in IT, and honestly, I wouldn't survive without my go-to tools. Canva saves me when I need quick visuals, Google Workspace keeps my team connected, and virtual machines let me experiment without fear. But beyond tools, I've been reflecting on how AI is reshaping our work and how programming challenges push me to grow.</p>
           
+          <a href="images/marathon.jpg" target="photo_view">
+          <img src="images/marathon.jpg" title="A person working on a laptop with various people around them" class="blog-image">
+        </a>
+
           <h3>Exploration</h3>
           <p>I can't imagine working without Canva, it's my shortcut to design without being a designer. Google Workspace is my lifeline for collaboration; I've lost count of how many projects were saved by Docs and Sheets. And virtual machines? They're my safe playground for testing code without breaking my actual system. Right now, AI feels like both a blessing and a challenge. It speeds up tasks like debugging and documentation, but it also forces me to rethink how I approach problems. Sometimes I wonder: am I learning less because AI helps too much, or am I learning more because it pushes me to think differently?
             The Programming Language That Challenges Me Most, For me, it's Java and C#. The syntax, the memory management, the endless debugging, it's like climbing a mountain with no clear peak. But every time I conquer a bug, I feel a rush of accomplishment that no easy language could give me. People think programming is about typing fast, but it's not. It's about thinking, planning, and solving problems. I've spent hours staring at the screen without typing a single line, just figuring out logic. That's the real work — typing is just the final step.</p>
           
+          <a href="images/exploration.jpg" target="photo_view">
+          <img src="images/exploration.jpg" title="A close-up of a person's hands on a keyboard with code on the screen" class="blog-image">
+        </a>
+
           <h3>Realization</h3>
           <p>Looking back, I realize tools make me efficient, but challenges make me resilient. AI is here to stay, and instead of fearing it, I want to adapt and grow with it. My takeaway? IT isn't about speed or shortcuts — it's about mindset. And my plan is simple: keep learning, keep experimenting, and never stop questioning.</p>
+
+          <a href="images/realization.jpg" target="photo_view">
+          <img src="images/realization.jpg" title="A person looking at a sunrise symbolizing realization and future goals" class="blog-image">
+        </a>
+
         <div style="text-align: right; margin-top: 40px; clear: both;">
             <a href="blog2.html" class="next-btn">Next: Blog Part 2 &rarr;</a>
         </div>
@@ -88,6 +111,6 @@
 
   <footer>
     <p>&copy; 2024 Jay Ralph Carillo. All Rights Reserved.</p>
-</footer>
+  </footer>
 </body>
 </html>
